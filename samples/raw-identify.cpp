@@ -109,9 +109,8 @@ void trimSpaces(char *s)
 
 int main(int ac, char *av[])
 {
-  int ret;
-  int verbose = 0, print_sz = 0, print_unpack = 0, print_frame = 0, print_wb = 0;
-  int compact = 0, print_1 = 0, print_2 = 0;
+  int verbose = 0, ret, print_sz = 0, print_unpack = 0, print_frame = 0, print_wb = 0;
+  int compact = 0;
   LibRaw MyCoolRawProcessor;
 
   for (int i = 1; i < ac; i++)
@@ -132,53 +131,16 @@ int main(int ac, char *av[])
         O.half_size = 1;
       if (av[i][1] == 'f' && av[i][2] == 0)
         print_frame++;
-      if (av[i][1] == '1' && av[i][2] == 0)
-        print_1++;
-      if (av[i][1] == '2' && av[i][2] == 0)
-        print_2++;
       continue;
     }
-
     if ((ret = MyCoolRawProcessor.open_file(av[i])) != LIBRAW_SUCCESS)
     {
       printf("Cannot decode %s: %s\n", av[i], libraw_strerror(ret));
       continue; // no recycle, open_file will recycle
     }
-
     if (print_sz)
     {
       printf("%s\t%s\t%s\t%d\t%d\n", av[i], P1.make, P1.model, S.width, S.height);
-    }
-    else if (print_1)
-    {
-      char frame[64] = "";
-      snprintf(frame, 64, "rw %d rh %d lm %d tm %d",
-               S.raw_width, S.raw_height, S.left_margin, S.top_margin);
-      printf("%s=%s=nFms %02d=%s=bps %02d=%s", P1.make, P1.model, P1.raw_count, MyCoolRawProcessor.unpack_function_name(), C.raw_bps, frame);
-      printf("\n");
-    }
-    else if (print_2)
-    {
-      printf("// %s %s", P1.make, P1.model);
-      if (C.cam_mul[0] > 0)
-      {
-        printf("\n'As shot' WB:");
-        for (int c = 0; c < 4; c++)
-          printf(" %.3f", C.cam_mul[c]);
-      }
-      if (C.WB_Coeffs[LIBRAW_WBI_Auto][0] > 0)
-      {
-        printf("\n'Camera Auto' WB:");
-        for (int c = 0; c < 4; c++)
-          printf(" %d", C.WB_Coeffs[LIBRAW_WBI_Auto][c]);
-      }
-      if (C.WB_Coeffs[LIBRAW_WBI_Measured][0] > 0)
-      {
-        printf("\n'Camera Measured' WB:");
-        for (int c = 0; c < 4; c++)
-          printf(" %d", C.WB_Coeffs[LIBRAW_WBI_Measured][c]);
-      }
-      printf("\n\n");
     }
     else if (verbose)
     {
@@ -191,31 +153,16 @@ int main(int ac, char *av[])
       printf("\nFilename: %s\n", av[i]);
       printf("Timestamp: %s", ctime(&(P2.timestamp)));
       printf("Camera: %s %s ID: 0x%llx\n", P1.make, P1.model, mnLens.CamID);
-
-      if (ShootingInfo.BodySerial[0] && strcmp(ShootingInfo.BodySerial, "0")) {
+      if (ShootingInfo.BodySerial[0])
+      {
         trimSpaces(ShootingInfo.BodySerial);
-        printf("Body#: %s", ShootingInfo.BodySerial);
-      } else if (C.model2[0] && (!strncasecmp(P1.make, "Kodak", 5) || !strcmp(P1.model, "EOS D2000C"))) {
-        trimSpaces(C.model2);
-        printf("Body#: %s", C.model2);
-      }
-      if (ShootingInfo.InternalBodySerial[0]) {
-        trimSpaces(ShootingInfo.InternalBodySerial);
-        printf(" BodyAssy#: %s", ShootingInfo.InternalBodySerial);
-      }
-      if (exifLens.LensSerial[0]) {
-        trimSpaces(exifLens.LensSerial);
-        printf(" Lens#: %s", exifLens.LensSerial);
-      }
-      if (exifLens.InternalLensSerial[0]) {
-        trimSpaces(exifLens.InternalLensSerial);
-        printf(" LensAssy#: %s", exifLens.InternalLensSerial);
+        printf("Body serial: %s\n", ShootingInfo.BodySerial);
       }
       if (P2.artist[0])
-        printf(" Owner: %s\n", P2.artist);
+        printf("Owner: %s\n", P2.artist);
       if (P1.dng_version)
       {
-        printf(" DNG Version: ");
+        printf("DNG Version: ");
         for (int i = 24; i >= 0; i -= 8)
           printf("%d%c", P1.dng_version >> i & 255, i ? '.' : '\n');
       }
@@ -231,12 +178,11 @@ int main(int ac, char *av[])
       printf("\n");
 
       printf("\nMakernotes:\n");
-      printf("\tDriveMode: %d\n" ,ShootingInfo.DriveMode);
+      printf("\tDriveMode: %d\n", ShootingInfo.DriveMode);
       printf("\tFocusMode: %d\n", ShootingInfo.FocusMode);
       printf("\tMeteringMode: %d\n", ShootingInfo.MeteringMode);
       printf("\tAFPoint: %d\n", ShootingInfo.AFPoint);
       printf("\tExposureMode: %d\n", ShootingInfo.ExposureMode);
-      printf("\tExposureProgram: %d\n", ShootingInfo.ExposureProgram);
       printf("\tImageStabilization: %d\n", ShootingInfo.ImageStabilization);
       if (mnLens.body[0])
       {
@@ -263,58 +209,13 @@ int main(int ac, char *av[])
       case 5:
         printf("1\"\n");
         break;
-      case 6:
-        printf("1/2.3\"\n");
-        break;
       case 8:
         printf("4/3\n");
-        break;
-      case 15:
-        printf("Leica DMR\n");
         break;
       default:
         printf("Unknown\n");
         break;
       }
-
-      if (!strncasecmp(P1.make, "Nikon", 5) && Nikon.CropData[0]) {
-        printf("\tNikon crop: %d, ", Nikon.CropFormat);
-        switch (Nikon.CropFormat) {
-        case 0:
-          printf("Off\n");
-          break;
-        case 1:
-          printf("1.3x\n");
-          break;
-        case 2:
-          printf("DX\n");
-          break;
-        case 3:
-          printf("5:4\n");
-          break;
-        case 4:
-          printf("3:2\n");
-          break;
-        case 6:
-          printf("16:9\n");
-          break;
-        case 11:
-          printf("FX uncropped\n");
-          break;
-        case 12:
-          printf("DX uncropped\n");
-          break;
-        case 17:
-          printf("1:1\n");
-          break;
-        default:
-          printf("Unknown\n");
-          break;
-        }
-        printf("\tSensor %d x %d; crop: %d x %d; top left pixel: (%d, %d)\n",
-          Nikon.CropData[0], Nikon.CropData[1], Nikon.CropData[2], Nikon.CropData[3], Nikon.CropData[4], Nikon.CropData[5]);
-      }
-
       printf("\tCameraMount: %d, ", mnLens.CameraMount);
       switch (mnLens.CameraMount)
       {
@@ -374,24 +275,6 @@ int main(int ac, char *av[])
         break;
       case 19:
         printf("Samsung NX-M\n");
-        break;
-      case 20:
-        printf("Leica L\n");
-        break;
-      case 21:
-        printf ("Contax N\n");
-        break;
-      case 22:
-        printf ("Sigma X3F\n");
-        break;
-      case 23:
-        printf ("Leica TL\n");
-        break;
-      case 24:
-        printf ("Leica SL\n");
-        break;
-      case 25:
-        printf ("Nikon Z\n");
         break;
       case 99:
         printf("Fixed Lens\n");
@@ -492,21 +375,6 @@ int main(int ac, char *av[])
       case 18:
         printf("Ricoh module\n");
         break;
-      case 20:
-        printf("Leica L\n");
-        break;
-      case 21:
-        printf ("Contax N\n");
-        break;
-      case 22:
-        printf ("Sigma X3F\n");
-        break;
-      case 23:
-        printf ("Leica TL\n");
-        break;
-      case 24:
-        printf ("Leica SL\n");
-        break;
       case 99:
         printf("Fixed Lens\n");
         break;
@@ -567,7 +435,7 @@ int main(int ac, char *av[])
         printf("real ISO speed: %d\n", (int)P2.real_ISO);
       printf("Shutter: ");
       if (P2.shutter > 0 && P2.shutter < 1)
-        P2.shutter = (printf("1/"), 1.0f / P2.shutter);
+        P2.shutter = (printf("1/"), 1 / P2.shutter);
       printf("%0.1f sec\n", P2.shutter);
       printf("Aperture: f/%0.1f\n", P2.aperture);
       printf("Focal length: %0.1f mm\n", P2.focal_len);
@@ -593,8 +461,8 @@ int main(int ac, char *av[])
       else
         printf("Embedded ICC profile: no\n");
 
-      if (C.dng_levels.baseline_exposure > -999.f)
-        printf("Baseline exposure: %04.3f\n", C.dng_levels.baseline_exposure);
+      if (C.baseline_exposure > -999.f)
+        printf("Baseline exposure: %04.3f\n", C.baseline_exposure);
 
       printf("Number of raw images: %d\n", P1.raw_count);
       if (Fuji.FujiExpoMidPointShift > -999.f)
@@ -812,7 +680,7 @@ int main(int ac, char *av[])
         for (int i = 0; i < P1.colors; i++)
         {
           for (int j = 0; j < P1.colors; j++)
-            printf("%6.4f\t", C.cmatrix[i][j]);
+            printf("%6.4f\t", C.cmatrix[j][i]);
           printf("\n");
         }
       }
@@ -823,7 +691,7 @@ int main(int ac, char *av[])
         for (int i = 0; i < P1.colors; i++)
         {
           for (int j = 0; j < P1.colors; j++)
-            printf("%6.4f\t", C.ccm[i][j]);
+            printf("%6.4f\t", C.ccm[j][i]);
           printf("\n");
         }
       }
@@ -882,16 +750,6 @@ int main(int ac, char *av[])
       for (int c = 0; c < P1.colors; c++)
         printf(" %f", C.pre_mul[c]);
       printf("\n");
-
-      if (Sony.PixelShiftGroupID) {
-        printf("\nSony PixelShiftGroupPrefix 0x%x PixelShiftGroupID %d, ",
-                Sony.PixelShiftGroupPrefix, Sony.PixelShiftGroupID);
-        if (Sony.numInPixelShiftGroup) {
-             printf("shot# %d (starts at 1) of total %d\n", Sony.numInPixelShiftGroup, Sony.nShotsInPixelShiftGroup);
-        } else {
-           printf("shots in PixelShiftGroup %d, already ARQ\n", Sony.nShotsInPixelShiftGroup);
-        }
-      }
 
       if (Sony.Sony0x9400_version)
         printf("\nSONY Sequence data, tag 0x9400 version %x\n\
@@ -981,6 +839,5 @@ int main(int ac, char *av[])
 
     MyCoolRawProcessor.recycle();
   } // endfor
-
   return 0;
 }

@@ -81,19 +81,12 @@ LibRaw_file_datastream::LibRaw_file_datastream(const char *fname)
     if (!_stati64(filename.c_str(), &st))
       _fsize = st.st_size;
 #endif
-#ifdef LIBRAW_USE_AUTOPTR
+
     std::auto_ptr<std::filebuf> buf(new std::filebuf());
-#else
-    std::unique_ptr<std::filebuf> buf(new std::filebuf());
-#endif
     buf->open(filename.c_str(), std::ios_base::in | std::ios_base::binary);
     if (buf->is_open())
     {
-#ifdef LIBRAW_USE_AUTOPTR
       f = buf;
-#else
-      f = std::move(buf);
-#endif
     }
   }
 }
@@ -106,19 +99,11 @@ LibRaw_file_datastream::LibRaw_file_datastream(const wchar_t *fname)
     struct _stati64 st;
     if (!_wstati64(wfilename.c_str(), &st))
       _fsize = st.st_size;
-#ifdef LIBRAW_USE_AUTOPTR
     std::auto_ptr<std::filebuf> buf(new std::filebuf());
-#else
-    std::unique_ptr<std::filebuf> buf(new std::filebuf());
-#endif
     buf->open(wfilename.c_str(), std::ios_base::in | std::ios_base::binary);
     if (buf->is_open())
     {
-#ifdef LIBRAW_USE_AUTOPTR
       f = buf;
-#else
-      f = std::move(buf);
-#endif
     }
   }
 }
@@ -237,31 +222,18 @@ int LibRaw_file_datastream::subfile_open(const char *fn)
   LR_STREAM_CHK();
   if (saved_f.get())
     return EBUSY;
-#ifdef LIBRAW_USE_AUTOPTR
   saved_f = f;
   std::auto_ptr<std::filebuf> buf(new std::filebuf());
-#else
-  saved_f = std::move(f);
-  std::unique_ptr<std::filebuf> buf(new std::filebuf());
-#endif
 
   buf->open(fn, std::ios_base::in | std::ios_base::binary);
   if (!buf->is_open())
   {
-#ifdef LIBRAW_USE_AUTOPTR
     f = saved_f;
-#else
-    f = std::move(saved_f);
-#endif
     return ENOENT;
   }
   else
   {
-#ifdef LIBRAW_USE_AUTOPTR
     f = buf;
-#else
-    f = std::move(buf);
-#endif
   }
 
   return 0;
@@ -273,31 +245,18 @@ int LibRaw_file_datastream::subfile_open(const wchar_t *fn)
   LR_STREAM_CHK();
   if (saved_f.get())
     return EBUSY;
-#ifdef LIBRAW_USE_AUTOPTR
   saved_f = f;
   std::auto_ptr<std::filebuf> buf(new std::filebuf());
-#else
-  saved_f = std::move(f);
-  std::unique_ptr<std::filebuf> buf(new std::filebuf());
-#endif
 
   buf->open(fn, std::ios_base::in | std::ios_base::binary);
   if (!buf->is_open())
   {
-#ifdef LIBRAW_USE_AUTOPTR
     f = saved_f;
-#else
-    f = std::move(saved_f);
-#endif
     return ENOENT;
   }
   else
   {
-#ifdef LIBRAW_USE_AUTOPTR
     f = buf;
-#else
-    f = std::move(buf);
-#endif
   }
 
   return 0;
@@ -308,11 +267,7 @@ void LibRaw_file_datastream::subfile_close()
 {
   if (!saved_f.get())
     return;
-#ifdef LIBRAW_USE_AUTOPTR
   f = saved_f;
-#else
-  f = std::move(saved_f);
-#endif
 }
 
 #undef LR_STREAM_CHK
