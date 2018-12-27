@@ -1,3 +1,10 @@
+### LibRaw-201812 snapshot note:
+This branch diverged from old master. To update your copy use
+~~~
+git fetch
+git reset origin/master
+~~~
+
 # LibRaw
 ### Library for reading and processing of RAW digicam images
 
