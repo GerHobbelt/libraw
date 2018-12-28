@@ -5,7 +5,8 @@ includedir=@includedir@
 
 Name: libraw
 Description: Raw image decoder library (thread-safe)
-Requires: @PACKAGE_REQUIRES@
+Requires.private: @PACKAGE_REQUIRES@
 Version: @PACKAGE_VERSION@
-Libs: -L${libdir} -lraw_r -lstdc++@PC_OPENMP@
+Libs: -L${libdir} -lraw_r@PC_OPENMP@
+Libs.private: -lstdc++
 Cflags: -I${includedir}/libraw
