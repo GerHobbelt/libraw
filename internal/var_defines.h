@@ -129,6 +129,13 @@ it under the terms of the one of two licenses as you choose:
 #define dcb_iterations   (imgdata.params.iterations)
 #define dcb_enhance_fl   (imgdata.params.dcb_enhance)
 #define fbdd_noiserd     (imgdata.params.fbdd_noiserd)
+<<<<<<< HEAD
+=======
+
+//rgb_constants
+#define xyz_rgb         (rgb_constants.xyz_rgb)
+#define d65_white       (rgb_constants.d65_white)
+>>>>>>> 97208824c61059805bc104d48ebc2f38cff856cf
 
 //libraw_internal_data.internal_data
 #define meta_data       (libraw_internal_data.internal_data.meta_data)
@@ -185,6 +192,7 @@ it under the terms of the one of two licenses as you choose:
 #define load_flags      (libraw_internal_data.unpacker_data.load_flags)
 #define pana_encoding   (libraw_internal_data.unpacker_data.pana_encoding)
 #define pana_bpp        (libraw_internal_data.unpacker_data.pana_bpp)
+<<<<<<< HEAD
 #define CM_found        (libraw_internal_data.unpacker_data.CM_found)
 
 #define is_NikonTransfer (libraw_internal_data.unpacker_data.is_NikonTransfer)
@@ -193,6 +201,8 @@ it under the terms of the one of two licenses as you choose:
 #define is_PentaxRicohMakernotes    (libraw_internal_data.unpacker_data.is_PentaxRicohMakernotes)
 #define is_pana_raw      (libraw_internal_data.unpacker_data.is_pana_raw)
 
+=======
+>>>>>>> 97208824c61059805bc104d48ebc2f38cff856cf
 
 #ifdef LIBRAW_IO_REDEFINED
 #define fread(ptr,size,n,stream) stream->read(ptr,size,n)

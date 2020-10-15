@@ -24,20 +24,26 @@ it under the terms of the one of two licenses as you choose:
 #define LIBRAW_MAX_ALLOC_MB_DEFAULT 2048L
 #endif
 
+<<<<<<< HEAD
 /* limit thumbnail size, default is 512Mb*/
 #ifndef LIBRAW_MAX_THUMBNAIL_MB
 #define LIBRAW_MAX_THUMBNAIL_MB 512L
 #endif
 
+=======
+>>>>>>> 97208824c61059805bc104d48ebc2f38cff856cf
 /* Check if enough file space exists before tag read */
 #ifndef LIBRAW_NO_IOSPACE_CHECK
 #define LIBRAW_IOSPACE_CHECK
 #endif
+<<<<<<< HEAD
 #ifndef LIBRAW_NO_CR3_MEMPOOL
 #define LIBRAW_CR3_MEMPOOL
 #endif
 
 
+=======
+>>>>>>> 97208824c61059805bc104d48ebc2f38cff856cf
 /* LibRaw uses own memory pool management, with LIBRAW_MSIZE (512)
 entries. It is enough for parsing/decoding non-damaged files, but
 may overflow on specially crafted files (eg. with many string values
@@ -47,8 +53,11 @@ LIBRAW_MEMPOOL_CHECK define will result in error on pool overflow */
 #define LIBRAW_MEMPOOL_CHECK
 #endif
 
+<<<<<<< HEAD
 #define LIBRAW_MAX_METADATA_BLOCKS 1024
 #define LIBRAW_CBLACK_SIZE 4104
+=======
+>>>>>>> 97208824c61059805bc104d48ebc2f38cff856cf
 #define LIBRAW_IFD_MAXCOUNT 10
 #define LIBRAW_CRXTRACKS_MAXCOUNT 16
 
@@ -507,6 +516,7 @@ enum LibRaw_processing_options
   LIBRAW_PROCESSING_NO_ROTATE_FOR_KODAK_THUMBNAILS = 1 << 11,
   LIBRAW_PROCESSING_USE_DNG_DEFAULT_CROP = 1 << 12,
   LIBRAW_PROCESSING_USE_PPM16_THUMBS = 1 << 13,
+<<<<<<< HEAD
   LIBRAW_PROCESSING_SKIP_MAKERNOTES = 1 << 14,
   LIBRAW_PROCESSING_DONT_CHECK_DNG_ILLUMINANT = 1 << 15,
   LIBRAW_PROCESSING_DNGSDK_ZEROCOPY = 1 << 16,
@@ -520,6 +530,9 @@ enum LibRaw_processing_options
   LIBRAW_PROCESSING_DNG_DISABLEWBADJUST = 1 << 24,
   LIBRAW_PROCESSING_PROVIDE_NONSTANDARD_WB = 1 << 25,
   LIBRAW_PROCESSING_CAMERAWB_FALLBACK_TO_DAYLIGHT = 1 << 26
+=======
+  LIBRAW_PROCESSING_CHECK_DNG_ILLUMINANT = 1 << 15
+>>>>>>> 97208824c61059805bc104d48ebc2f38cff856cf
 };
 
 enum LibRaw_decoder_flags
@@ -533,8 +546,11 @@ enum LibRaw_decoder_flags
   LIBRAW_DECODER_LEGACY_WITH_MARGINS = 1 << 10,
   LIBRAW_DECODER_3CHANNEL = 1 << 11,
   LIBRAW_DECODER_SINAR4SHOT = 1 << 11,
+<<<<<<< HEAD
   LIBRAW_DECODER_FLATDATA = 1 << 12,
   LIBRAW_DECODER_FLAT_BG2_SWAPPED = 1<<13,
+=======
+>>>>>>> 97208824c61059805bc104d48ebc2f38cff856cf
   LIBRAW_DECODER_NOTSET = 1 << 15
 };
 

@@ -21,11 +21,19 @@ it under the terms of the one of two licenses as you choose:
 #define __VERSION_H
 
 #define LIBRAW_MAJOR_VERSION 0
+<<<<<<< HEAD
 #define LIBRAW_MINOR_VERSION 20
 #define LIBRAW_PATCH_VERSION 2
 #define LIBRAW_VERSION_TAIL Release
 
 #define LIBRAW_SHLIB_CURRENT 20
+=======
+#define LIBRAW_MINOR_VERSION 19
+#define LIBRAW_PATCH_VERSION 2
+#define LIBRAW_VERSION_TAIL Release
+
+#define LIBRAW_SHLIB_CURRENT 19
+>>>>>>> 97208824c61059805bc104d48ebc2f38cff856cf
 #define LIBRAW_SHLIB_REVISION 0
 #define LIBRAW_SHLIB_AGE 0
 
