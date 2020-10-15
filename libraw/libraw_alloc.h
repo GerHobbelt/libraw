@@ -44,11 +44,7 @@ public:
   void *malloc(size_t sz)
   {
 #ifdef LIBRAW_USE_CALLOC_INSTEAD_OF_MALLOC
-<<<<<<< HEAD
     void *ptr = ::calloc(sz + extra_bytes, 1);
-=======
-    void *ptr = ::calloc(sz + extra_bytes,1);
->>>>>>> 97208824c61059805bc104d48ebc2f38cff856cf
 #else
     void *ptr = ::malloc(sz + extra_bytes);
 #endif
@@ -90,23 +86,16 @@ private:
   {
     if (ptr)
     {
-<<<<<<< HEAD
       for (int i = 0; i < LIBRAW_MSIZE - 1; i++)
-=======
-      for (int i = 0; i < LIBRAW_MSIZE; i++)
->>>>>>> 97208824c61059805bc104d48ebc2f38cff856cf
         if (!mems[i])
         {
           mems[i] = ptr;
           return;
         }
 #ifdef LIBRAW_MEMPOOL_CHECK
-<<<<<<< HEAD
       /* remember ptr in last mems item to be free'ed at cleanup */
       if (!mems[LIBRAW_MSIZE - 1])
         mems[LIBRAW_MSIZE - 1] = ptr;
-=======
->>>>>>> 97208824c61059805bc104d48ebc2f38cff856cf
       throw LIBRAW_EXCEPTION_MEMPOOL;
 #endif
     }

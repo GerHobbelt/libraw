@@ -27,7 +27,6 @@ it under the terms of the one of two licenses as you choose:
 #ifndef __cplusplus
 
 #else /* __cplusplus */
-<<<<<<< HEAD
 #if defined _WIN32
 #ifndef LIBRAW_NO_WINSOCK2
 #include <winsock2.h>
@@ -43,11 +42,6 @@ it under the terms of the one of two licenses as you choose:
 #define LIBRAW_USE_AUTOPTR
 #endif
 #endif
-=======
-#if defined WIN32 || defined(__MINGW32__)
-#include <winsock2.h>
-#endif
->>>>>>> 97208824c61059805bc104d48ebc2f38cff856cf
 
 #include "libraw_const.h"
 #include "libraw_types.h"
@@ -55,14 +49,7 @@ it under the terms of the one of two licenses as you choose:
 #include <memory>
 #include <vector>
 
-<<<<<<< HEAD
 #if defined(_WIN32) && (_MSC_VER) >= 1500
-=======
-#if defined WIN32 || defined(__MINGW32__)
-
-/* MSVS 2008 and above... */
-#if _MSC_VER >= 1500
->>>>>>> 97208824c61059805bc104d48ebc2f38cff856cf
 #define WIN32SECURECALLS
 #endif
 
