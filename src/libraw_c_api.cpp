@@ -375,6 +375,14 @@ extern "C"
     ip->imgdata.params.fbdd_noiserd = value;
   }
 
+  DllDef void libraw_set_half(libraw_data_t *lr, int value)
+  {
+    if (!lr)
+      return;
+    LibRaw *ip = (LibRaw *)lr->parent_class;
+    ip->imgdata.params.half_size = value;
+  }
+
   DllDef int libraw_get_raw_height(libraw_data_t *lr)
   {
     if (!lr)
