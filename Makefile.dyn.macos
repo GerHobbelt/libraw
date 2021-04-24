@@ -128,8 +128,8 @@ LR_INCLUDES=libraw/libraw.h libraw/libraw_alloc.h \
   libraw/libraw_version.h
 
 library: ${LIB_OBJECTS}
-	rm -f lib/libraw.mod.dylib
-	clang++ -dynamiclib -fpic -o lib/libraw.mod.dylib -ljpeg -lz ${LIB_OBJECTS}
+	rm -f lib/libraw_mod.dylib
+	clang++ -dynamiclib -fpic -o lib/libraw_mod.dylib -lz /usr/local/opt/jpeg/lib/libjpeg.a ${LIB_OBJECTS}
 
 ## RawSpeed xml file
 
