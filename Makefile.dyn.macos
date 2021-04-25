@@ -37,11 +37,11 @@ CFLAGS+=-DUSE_ZLIB
 LDADD+=-lz
 
 # JPEG support for DNG and Kodak
-CFLAGS+=-DUSE_JPEG -I/usr/local/include
-LDADD+=-L/usr/local/lib -ljpeg
+#CFLAGS+=-DUSE_JPEG -I/usr/local/include
+#LDADD+=-L/usr/local/lib -ljpeg
 
 # LIBJPEG8:
-CFLAGS+=-DUSE_JPEG8
+#CFLAGS+=-DUSE_JPEG8
 
 CSTFLAGS=$(CFLAGS) -DLIBRAW_NOTHREADS
 HEADERS=libraw/libraw.h libraw/libraw_alloc.h libraw/libraw_const.h \
@@ -129,7 +129,7 @@ LR_INCLUDES=libraw/libraw.h libraw/libraw_alloc.h \
 
 library: ${LIB_OBJECTS}
 	rm -f lib/libraw_mod.dylib
-	clang++ -dynamiclib -fpic -o lib/libraw_mod.dylib -lz /usr/local/opt/jpeg/lib/libjpeg.a ${LIB_OBJECTS}
+	clang++ -dynamiclib -fpic -o lib/libraw_mod.dylib -lz ${LIB_OBJECTS}
 
 ## RawSpeed xml file
 
