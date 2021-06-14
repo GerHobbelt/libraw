@@ -99,9 +99,9 @@ LR_INCLUDES=libraw/libraw.h libraw/libraw_alloc.h \
   libraw/libraw_internal.h libraw/libraw_types.h \
   libraw/libraw_version.h
 
-library: ${LIB_OBJECTS}
+library: ${LIB_MT_OBJECTS}
 	rm -f lib/libraw_mod.macos.a
-	ar crv lib/libraw_mod.macos.a ${LIB_OBJECTS}
+	ar crv lib/libraw_mod.macos.a ${LIB_MT_OBJECTS}
 	ranlib lib/libraw_mod.macos.a
 
 ## RawSpeed xml file
