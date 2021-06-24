@@ -787,7 +787,7 @@ LibRaw_bigfile_buffered_datastream::LibRaw_bigfile_buffered_datastream(const wch
             OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0)) != INVALID_HANDLE_VALUE)
 #endif
         {
-            if (fhandle > 0)
+            if (fhandle != nullptr)
             {
                 LARGE_INTEGER fs;
                 if (GetFileSizeEx(fhandle, &fs))
@@ -811,11 +811,11 @@ const wchar_t *LibRaw_bigfile_buffered_datastream::wfname()
 
 LibRaw_bigfile_buffered_datastream::~LibRaw_bigfile_buffered_datastream()
 {
-    if (fhandle > 0)
+    if (fhandle != nullptr)
         CloseHandle(fhandle);
 }
 int LibRaw_bigfile_buffered_datastream::valid() {
-    return fhandle > 0 && fhandle != INVALID_HANDLE_VALUE;
+    return fhandle != nullptr && fhandle != INVALID_HANDLE_VALUE;
 }
 
 const char *LibRaw_bigfile_buffered_datastream::fname()
