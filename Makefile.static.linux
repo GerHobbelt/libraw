@@ -54,8 +54,8 @@ HEADERS=libraw/libraw.h libraw/libraw_alloc.h libraw/libraw_const.h \
   internal/libraw_internal_funcs.h internal/var_defines.h internal/x3f_tools.h
 
 library: ${LIB_MT_OBJECTS}
-	ar crv lib/libraw_mod.mingw.a ${LIB_MT_OBJECTS}
-	ranlib lib/libraw_mod.mingw.a
+	ar crv lib/libraw_mod.linux.a ${LIB_MT_OBJECTS}
+	ranlib lib/libraw_mod.linux.a
 
 clean:
 	rm -fr bin/*.dSYM
