@@ -57,6 +57,10 @@ library: ${LIB_MT_OBJECTS}
 	ar crv lib/libraw_mod.mingw.a ${LIB_MT_OBJECTS}
 	ranlib lib/libraw_mod.mingw.a
 
+clean:
+	rm -fr bin/*.dSYM
+	rm -f *.o *~ src/*~ samples/*~ internal/*~ libraw/*~ lib/lib*.a bin/[4a-z]* object/*.o object/*.mto dcraw/*~ doc/*~ bin/*~ src/*/*~
+
 ## script-created rules
 object/libraw_c_api.o: src/libraw_c_api.cpp $(HEADERS)
 	${CXX} -c -DLIBRAW_NOTHREADS  ${CFLAGS} -o object/libraw_c_api.o src/libraw_c_api.cpp
