@@ -4,13 +4,10 @@ CFLAGS=-I. -fpic
 CFLAGS+=-Ofast -march=native -funroll-loops
 #CFLAGS+=-Wall -Wextra -pedantic
 
-CC=gcc
 CXX=g++
 
 # ZLIB support (FP dng)
 CFLAGS+=-DUSE_ZLIB
-
-CSTFLAGS=$(CFLAGS) -DLIBRAW_NOTHREADS
 
 LIB_MT_OBJECTS= object/libraw_datastream.mt.o object/libraw_c_api.mt.o \
   object/cameralist.mt.o object/fuji_compressed.mt.o \
