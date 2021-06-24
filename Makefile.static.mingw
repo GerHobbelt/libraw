@@ -1,10 +1,11 @@
 all: library
 
+CXX=g++
+
 CFLAGS=-I. -fpic
 CFLAGS+=-Ofast -march=native -funroll-loops
 #CFLAGS+=-Wall -Wextra -pedantic
 
-CXX=g++
 
 # ZLIB support (FP dng)
 CFLAGS+=-DUSE_ZLIB

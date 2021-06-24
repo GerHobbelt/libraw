@@ -1,10 +1,11 @@
 all: library
 
+CXX=g++
+
 CFLAGS=-I. -fpic
 CFLAGS+=-Ofast -march=native -funroll-loops
 #CFLAGS+=-Wall -Wextra -pedantic
 
-CXX=g++
 
 # ZLIB support (FP dng)
 CFLAGS+=-DUSE_ZLIB
@@ -54,6 +55,7 @@ HEADERS=libraw/libraw.h libraw/libraw_alloc.h libraw/libraw_const.h \
   internal/libraw_internal_funcs.h internal/var_defines.h internal/x3f_tools.h
 
 library: ${LIB_MT_OBJECTS}
+	rm -f lib/libraw_mod.linux.a
 	ar crv lib/libraw_mod.linux.a ${LIB_MT_OBJECTS}
 	ranlib lib/libraw_mod.linux.a
 

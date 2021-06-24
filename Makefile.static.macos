@@ -1,61 +1,15 @@
 all: library
 
-CC=clang
 CXX=clang++
 
-LDADD+=-lz
-
-CFLAGS=-DLIBRAW_USE_AUTOPTR
-CFLAGS+=-I. -pedantic -Wno-long-long -Wno-overflow -O3
-
-# macOS dual arch
+CFLAGS=-I.
 CFLAGS+=-arch x86_64 -arch arm64
+CFLAGS+=-Ofast -funroll-loops
+#CFLAGS+=-Wall -Wextra -pedantic
+
 
 # ZLIB support (FP dng)
 CFLAGS+=-DUSE_ZLIB
-LDADD+=-lz
-
-CSTFLAGS=$(CFLAGS) -DLIBRAW_NOTHREADS
-HEADERS=libraw/libraw.h libraw/libraw_alloc.h libraw/libraw_const.h \
-  libraw/libraw_datastream.h libraw/libraw_internal.h  \
-  libraw/libraw_types.h libraw/libraw_version.h \
-  internal/dcraw_defs.h internal/dcraw_fileio_defs.h internal/defines.h \
-  internal/dmp_include.h internal/libraw_cameraids.h internal/libraw_cxx_defs.h \
-  internal/libraw_internal_funcs.h internal/var_defines.h internal/x3f_tools.h
-
-LIB_OBJECTS= object/libraw_datastream.o object/libraw_c_api.o \
-  object/cameralist.o object/fuji_compressed.o \
-  object/crx.o object/fp_dng.o object/decoders_libraw.o \
-  object/unpack.o object/unpack_thumb.o \
-  object/rawspeed_glue.o object/dngsdk_glue.o \
-  object/colorconst.o object/utils_libraw.o object/init_close_utils.o \
-  object/decoder_info.o object/open.o object/phaseone_processing.o \
-  object/thumb_utils.o \
-  object/tiff_writer.o object/subtract_black.o object/postprocessing_utils.o \
-  object/dcraw_process.o object/raw2image.o object/mem_image.o \
-  object/x3f_utils_patched.o object/x3f_parse_process.o \
-  object/read_utils.o object/curves.o object/utils_dcraw.o \
-  object/colordata.o \
-  object/canon_600.o  object/decoders_dcraw.o \
-  object/decoders_libraw_dcrdefs.o  object/generic.o \
-  object/kodak_decoders.o object/dng.o object/smal.o \
-  object/load_mfbacks.o \
-  object/sony.o object/nikon.o object/samsung.o object/cr3_parser.o \
-  object/canon.o  object/epson.o object/olympus.o object/leica.o \
-  object/fuji.o object/adobepano.o object/pentax.o object/p1.o \
-  object/makernotes.o object/exif_gps.o object/kodak.o \
-  object/tiff.o object/ciff.o object/mediumformat.o object/minolta.o \
-  object/identify_tools.o \
-  object/hasselblad_model.o object/normalize_model.o object/identify.o \
-  object/misc_parsers.o object/wblists.o \
-  object/postprocessing_aux.o object/postprocessing_utils_dcrdefs.o \
-  object/aspect_ratio.o \
-  object/misc_demosaic.o object/xtrans_demosaic.o object/ahd_demosaic.o \
-  object/dht_demosaic.o  object/aahd_demosaic.o  object/dcb_demosaic.o \
-  object/file_write.o \
-  object/ext_preprocess.o   object/apply_profile.o
-
-
 LIB_MT_OBJECTS= object/libraw_datastream.mt.o object/libraw_c_api.mt.o \
   object/cameralist.mt.o object/fuji_compressed.mt.o \
   object/crx.mt.o object/fp_dng.mt.o object/decoders_libraw.mt.o \
@@ -93,21 +47,17 @@ LIB_MT_OBJECTS= object/libraw_datastream.mt.o object/libraw_c_api.mt.o \
   object/file_write.mt.o \
   object/ext_preprocess.mt.o   object/apply_profile.mt.o
 
-
-LR_INCLUDES=libraw/libraw.h libraw/libraw_alloc.h \
-  libraw/libraw_const.h libraw/libraw_datastream.h \
-  libraw/libraw_internal.h libraw/libraw_types.h \
-  libraw/libraw_version.h
+HEADERS=libraw/libraw.h libraw/libraw_alloc.h libraw/libraw_const.h \
+  libraw/libraw_datastream.h libraw/libraw_internal.h  \
+  libraw/libraw_types.h libraw/libraw_version.h \
+  internal/dcraw_defs.h internal/dcraw_fileio_defs.h internal/defines.h \
+  internal/dmp_include.h internal/libraw_cameraids.h internal/libraw_cxx_defs.h \
+  internal/libraw_internal_funcs.h internal/var_defines.h internal/x3f_tools.h
 
 library: ${LIB_MT_OBJECTS}
 	rm -f lib/libraw_mod.macos.a
 	ar crv lib/libraw_mod.macos.a ${LIB_MT_OBJECTS}
 	ranlib lib/libraw_mod.macos.a
-
-## RawSpeed xml file
-
-RawSpeed/rawspeed_xmldata.cpp: ${RAWSPEED_DATA}
-	./rsxml2c.sh ${RAWSPEED_DATA} > RawSpeed/rawspeed_xmldata.cpp
 
 clean:
 	rm -fr bin/*.dSYM
