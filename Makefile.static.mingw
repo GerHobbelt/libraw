@@ -3,7 +3,7 @@ all: library
 CXX=g++
 
 CFLAGS=-I. -fpic
-CFLAGS+=-Ofast -march=native -funroll-loops
+CFLAGS+=-Ofast -funroll-loops
 #CFLAGS+=-Wall -Wextra -pedantic
 
 
