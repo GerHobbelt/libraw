@@ -1,0 +1,114 @@
+name: Build static libs of modified LibRaw 
+
+on:
+  push:
+    branches: [ master ]
+    
+  workflow_dispatch:
+
+jobs:
+  Prepare:
+    runs-on: ubuntu-18.04
+    outputs:
+      release_upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: Check out qdwang/LibRaw
+        uses: actions/checkout@v2
+        with:
+          repository: qdwang/LibRaw
+
+      - name: Set variables
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: Remove nightly tag
+        uses: dev-drprasad/delete-tag-and-release@v0.2.0
+        with:
+          delete_release: true
+          tag_name: nightly
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+
+      - name: Create .a file prerelease
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: nightly
+          release_name: Release nightly builds - ${{  steps.vars.outputs.sha_short }}
+          prerelease: true
+
+  Build_MacOS:
+    runs-on: macos-11
+    needs: Prepare
+    steps:
+      - name: Check out qdwang/LibRaw
+        uses: actions/checkout@v2
+        with:
+          repository: qdwang/LibRaw
+
+      - name: Compile
+        run: make -f Makefile.static.macos
+
+      - name: Upload to nightly prerelease
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.Prepare.outputs.release_upload_url }}
+          asset_path: ./lib/libraw_mod.macos.a
+          asset_name: libraw_mod.macos.a
+          asset_content_type: application/x-archive
+
+  Build_Win:
+    runs-on: windows-2019
+    needs: Prepare
+    steps:
+      - name: Check out qdwang/LibRaw
+        uses: actions/checkout@v2
+        with:
+          repository: qdwang/LibRaw
+          
+      - name: Update compiler
+        run: choco upgrade mingw
+        
+      - name: Compile
+        run: make -f Makefile.static.mingw
+
+      - name: Upload to nightly prerelease
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.Prepare.outputs.release_upload_url }}
+          asset_path: ./lib/libraw_mod.mingw.a
+          asset_name: libraw_mod.mingw.a
+          asset_content_type: application/x-archive
+
+  Build_Linux:
+    runs-on: ubuntu-18.04
+    needs: Prepare
+    steps:
+      - name: Check out qdwang/LibRaw
+        uses: actions/checkout@v2
+        with:
+          repository: qdwang/LibRaw
+
+      - name: Using GCC-10
+        run: |
+          sudo rm /usr/bin/g++
+          sudo ln -s /usr/bin/g++-10 /usr/bin/g++
+
+      - name: Compile
+        run: make -f Makefile.static.linux
+
+      - name: Upload to nightly prerelease
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.Prepare.outputs.release_upload_url }}
+          asset_path: ./lib/libraw_mod.linux.a
+          asset_name: libraw_mod.linux.a
+          asset_content_type: application/x-archive
