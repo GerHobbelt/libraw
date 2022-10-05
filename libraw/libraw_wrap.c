@@ -225,14 +225,14 @@ static void* Swig_malloc(int c) {
 }
 
 
-#include "libraw/libraw.h"
+#include "libraw.h"
 
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void _wrap_Swig_free_libraw_30a0215858b2f737(void *_swig_go_0) {
+void _wrap_Swig_free_libraw_7ab48979834a3756(void *_swig_go_0) {
   void *arg1 = (void *) 0 ;
   
   arg1 = *(void **)&_swig_go_0; 
@@ -242,7 +242,7 @@ void _wrap_Swig_free_libraw_30a0215858b2f737(void *_swig_go_0) {
 }
 
 
-void *_wrap_Swig_malloc_libraw_30a0215858b2f737(intgo _swig_go_0) {
+void *_wrap_Swig_malloc_libraw_7ab48979834a3756(intgo _swig_go_0) {
   int arg1 ;
   void *result = 0 ;
   void *_swig_go_result;
@@ -255,7 +255,7 @@ void *_wrap_Swig_malloc_libraw_30a0215858b2f737(intgo _swig_go_0) {
 }
 
 
-long long _wrap_LIBRAW_USE_STREAMS_DATASTREAM_MAXSIZE_libraw_30a0215858b2f737() {
+long long _wrap_LIBRAW_USE_STREAMS_DATASTREAM_MAXSIZE_libraw_7ab48979834a3756() {
   long result;
   long long _swig_go_result;
   
@@ -266,7 +266,7 @@ long long _wrap_LIBRAW_USE_STREAMS_DATASTREAM_MAXSIZE_libraw_30a0215858b2f737() 
 }
 
 
-_gostring_ _wrap_libraw_strerror_libraw_30a0215858b2f737(intgo _swig_go_0) {
+_gostring_ _wrap_libraw_strerror_libraw_7ab48979834a3756(intgo _swig_go_0) {
   int arg1 ;
   char *result = 0 ;
   _gostring_ _swig_go_result;
@@ -279,7 +279,7 @@ _gostring_ _wrap_libraw_strerror_libraw_30a0215858b2f737(intgo _swig_go_0) {
 }
 
 
-_gostring_ _wrap_libraw_strprogress_libraw_30a0215858b2f737(intgo _swig_go_0) {
+_gostring_ _wrap_libraw_strprogress_libraw_7ab48979834a3756(intgo _swig_go_0) {
   enum LibRaw_progress arg1 ;
   char *result = 0 ;
   _gostring_ _swig_go_result;
@@ -292,7 +292,7 @@ _gostring_ _wrap_libraw_strprogress_libraw_30a0215858b2f737(intgo _swig_go_0) {
 }
 
 
-libraw_data_t *_wrap_libraw_init_libraw_30a0215858b2f737(intgo _swig_go_0) {
+libraw_data_t *_wrap_libraw_init_libraw_7ab48979834a3756(intgo _swig_go_0) {
   unsigned int arg1 ;
   libraw_data_t *result = 0 ;
   libraw_data_t *_swig_go_result;
@@ -305,7 +305,7 @@ libraw_data_t *_wrap_libraw_init_libraw_30a0215858b2f737(intgo _swig_go_0) {
 }
 
 
-intgo _wrap_libraw_open_file_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, _gostring_ _swig_go_1) {
+intgo _wrap_libraw_open_file_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, _gostring_ _swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   char *arg2 = (char *) 0 ;
   int result;
@@ -325,7 +325,7 @@ intgo _wrap_libraw_open_file_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, 
 }
 
 
-intgo _wrap_libraw_open_file_ex_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, _gostring_ _swig_go_1, INT64 *_swig_go_2) {
+intgo _wrap_libraw_open_file_ex_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, _gostring_ _swig_go_1, INT64 *_swig_go_2) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   char *arg2 = (char *) 0 ;
   INT64 arg3 ;
@@ -354,7 +354,7 @@ intgo _wrap_libraw_open_file_ex_libraw_30a0215858b2f737(libraw_data_t *_swig_go_
 }
 
 
-intgo _wrap_libraw_open_buffer_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, void *_swig_go_1, long long _swig_go_2) {
+intgo _wrap_libraw_open_buffer_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, void *_swig_go_1, long long _swig_go_2) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   void *arg2 = (void *) 0 ;
   size_t arg3 ;
@@ -371,7 +371,7 @@ intgo _wrap_libraw_open_buffer_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0
 }
 
 
-intgo _wrap_libraw_unpack_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+intgo _wrap_libraw_unpack_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -384,7 +384,7 @@ intgo _wrap_libraw_unpack_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
 }
 
 
-intgo _wrap_libraw_unpack_thumb_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+intgo _wrap_libraw_unpack_thumb_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -397,7 +397,7 @@ intgo _wrap_libraw_unpack_thumb_libraw_30a0215858b2f737(libraw_data_t *_swig_go_
 }
 
 
-void _wrap_libraw_recycle_datastream_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+void _wrap_libraw_recycle_datastream_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   
   arg1 = *(libraw_data_t **)&_swig_go_0; 
@@ -407,7 +407,7 @@ void _wrap_libraw_recycle_datastream_libraw_30a0215858b2f737(libraw_data_t *_swi
 }
 
 
-void _wrap_libraw_recycle_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+void _wrap_libraw_recycle_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   
   arg1 = *(libraw_data_t **)&_swig_go_0; 
@@ -417,7 +417,7 @@ void _wrap_libraw_recycle_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
 }
 
 
-void _wrap_libraw_close_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+void _wrap_libraw_close_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   
   arg1 = *(libraw_data_t **)&_swig_go_0; 
@@ -427,7 +427,7 @@ void _wrap_libraw_close_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
 }
 
 
-void _wrap_libraw_subtract_black_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+void _wrap_libraw_subtract_black_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   
   arg1 = *(libraw_data_t **)&_swig_go_0; 
@@ -437,7 +437,7 @@ void _wrap_libraw_subtract_black_libraw_30a0215858b2f737(libraw_data_t *_swig_go
 }
 
 
-intgo _wrap_libraw_raw2image_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+intgo _wrap_libraw_raw2image_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -450,7 +450,7 @@ intgo _wrap_libraw_raw2image_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) 
 }
 
 
-void _wrap_libraw_free_image_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+void _wrap_libraw_free_image_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   
   arg1 = *(libraw_data_t **)&_swig_go_0; 
@@ -460,7 +460,7 @@ void _wrap_libraw_free_image_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) 
 }
 
 
-_gostring_ _wrap_libraw_version_libraw_30a0215858b2f737() {
+_gostring_ _wrap_libraw_version_libraw_7ab48979834a3756() {
   char *result = 0 ;
   _gostring_ _swig_go_result;
   
@@ -471,7 +471,7 @@ _gostring_ _wrap_libraw_version_libraw_30a0215858b2f737() {
 }
 
 
-intgo _wrap_libraw_versionNumber_libraw_30a0215858b2f737() {
+intgo _wrap_libraw_versionNumber_libraw_7ab48979834a3756() {
   int result;
   intgo _swig_go_result;
   
@@ -482,7 +482,7 @@ intgo _wrap_libraw_versionNumber_libraw_30a0215858b2f737() {
 }
 
 
-_gostring_* _wrap_libraw_cameraList_libraw_30a0215858b2f737() {
+_gostring_* _wrap_libraw_cameraList_libraw_7ab48979834a3756() {
   char **result = 0 ;
   _gostring_* _swig_go_result;
   
@@ -493,7 +493,7 @@ _gostring_* _wrap_libraw_cameraList_libraw_30a0215858b2f737() {
 }
 
 
-intgo _wrap_libraw_cameraCount_libraw_30a0215858b2f737() {
+intgo _wrap_libraw_cameraCount_libraw_7ab48979834a3756() {
   int result;
   intgo _swig_go_result;
   
@@ -504,7 +504,7 @@ intgo _wrap_libraw_cameraCount_libraw_30a0215858b2f737() {
 }
 
 
-void _wrap_libraw_set_memerror_handler_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, memory_callback *_swig_go_1, void *_swig_go_2) {
+void _wrap_libraw_set_memerror_handler_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, memory_callback *_swig_go_1, void *_swig_go_2) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   memory_callback arg2 ;
   void *arg3 = (void *) 0 ;
@@ -525,7 +525,7 @@ void _wrap_libraw_set_memerror_handler_libraw_30a0215858b2f737(libraw_data_t *_s
 }
 
 
-void _wrap_libraw_set_exifparser_handler_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, exif_parser_callback *_swig_go_1, void *_swig_go_2) {
+void _wrap_libraw_set_exifparser_handler_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, exif_parser_callback *_swig_go_1, void *_swig_go_2) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   exif_parser_callback arg2 ;
   void *arg3 = (void *) 0 ;
@@ -546,7 +546,7 @@ void _wrap_libraw_set_exifparser_handler_libraw_30a0215858b2f737(libraw_data_t *
 }
 
 
-void _wrap_libraw_set_dataerror_handler_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, data_callback *_swig_go_1, void *_swig_go_2) {
+void _wrap_libraw_set_dataerror_handler_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, data_callback *_swig_go_1, void *_swig_go_2) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   data_callback arg2 ;
   void *arg3 = (void *) 0 ;
@@ -567,7 +567,7 @@ void _wrap_libraw_set_dataerror_handler_libraw_30a0215858b2f737(libraw_data_t *_
 }
 
 
-void _wrap_libraw_set_progress_handler_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, progress_callback *_swig_go_1, void *_swig_go_2) {
+void _wrap_libraw_set_progress_handler_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, progress_callback *_swig_go_1, void *_swig_go_2) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   progress_callback arg2 ;
   void *arg3 = (void *) 0 ;
@@ -588,7 +588,7 @@ void _wrap_libraw_set_progress_handler_libraw_30a0215858b2f737(libraw_data_t *_s
 }
 
 
-_gostring_ _wrap_libraw_unpack_function_name_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+_gostring_ _wrap_libraw_unpack_function_name_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   char *result = 0 ;
   _gostring_ _swig_go_result;
@@ -601,7 +601,7 @@ _gostring_ _wrap_libraw_unpack_function_name_libraw_30a0215858b2f737(libraw_data
 }
 
 
-intgo _wrap_libraw_get_decoder_info_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, libraw_decoder_info_t *_swig_go_1) {
+intgo _wrap_libraw_get_decoder_info_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, libraw_decoder_info_t *_swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   libraw_decoder_info_t *arg2 = (libraw_decoder_info_t *) 0 ;
   int result;
@@ -616,7 +616,7 @@ intgo _wrap_libraw_get_decoder_info_libraw_30a0215858b2f737(libraw_data_t *_swig
 }
 
 
-intgo _wrap_libraw_COLOR_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo _swig_go_1, intgo _swig_go_2) {
+intgo _wrap_libraw_COLOR_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo _swig_go_1, intgo _swig_go_2) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int arg2 ;
   int arg3 ;
@@ -633,7 +633,7 @@ intgo _wrap_libraw_COLOR_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intg
 }
 
 
-intgo _wrap_libraw_capabilities_libraw_30a0215858b2f737() {
+intgo _wrap_libraw_capabilities_libraw_7ab48979834a3756() {
   unsigned int result;
   intgo _swig_go_result;
   
@@ -644,7 +644,7 @@ intgo _wrap_libraw_capabilities_libraw_30a0215858b2f737() {
 }
 
 
-intgo _wrap_libraw_adjust_sizes_info_only_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+intgo _wrap_libraw_adjust_sizes_info_only_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -657,7 +657,7 @@ intgo _wrap_libraw_adjust_sizes_info_only_libraw_30a0215858b2f737(libraw_data_t 
 }
 
 
-intgo _wrap_libraw_dcraw_ppm_tiff_writer_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, _gostring_ _swig_go_1) {
+intgo _wrap_libraw_dcraw_ppm_tiff_writer_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, _gostring_ _swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   char *arg2 = (char *) 0 ;
   int result;
@@ -677,7 +677,7 @@ intgo _wrap_libraw_dcraw_ppm_tiff_writer_libraw_30a0215858b2f737(libraw_data_t *
 }
 
 
-intgo _wrap_libraw_dcraw_thumb_writer_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, _gostring_ _swig_go_1) {
+intgo _wrap_libraw_dcraw_thumb_writer_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, _gostring_ _swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   char *arg2 = (char *) 0 ;
   int result;
@@ -697,7 +697,7 @@ intgo _wrap_libraw_dcraw_thumb_writer_libraw_30a0215858b2f737(libraw_data_t *_sw
 }
 
 
-intgo _wrap_libraw_dcraw_process_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+intgo _wrap_libraw_dcraw_process_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -710,7 +710,7 @@ intgo _wrap_libraw_dcraw_process_libraw_30a0215858b2f737(libraw_data_t *_swig_go
 }
 
 
-libraw_processed_image_t *_wrap_libraw_dcraw_make_mem_image_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo *_swig_go_1) {
+libraw_processed_image_t *_wrap_libraw_dcraw_make_mem_image_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo *_swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int *arg2 = (int *) 0 ;
   libraw_processed_image_t *result = 0 ;
@@ -725,7 +725,7 @@ libraw_processed_image_t *_wrap_libraw_dcraw_make_mem_image_libraw_30a0215858b2f
 }
 
 
-libraw_processed_image_t *_wrap_libraw_dcraw_make_mem_thumb_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo *_swig_go_1) {
+libraw_processed_image_t *_wrap_libraw_dcraw_make_mem_thumb_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo *_swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int *arg2 = (int *) 0 ;
   libraw_processed_image_t *result = 0 ;
@@ -740,7 +740,7 @@ libraw_processed_image_t *_wrap_libraw_dcraw_make_mem_thumb_libraw_30a0215858b2f
 }
 
 
-void _wrap_libraw_dcraw_clear_mem_libraw_30a0215858b2f737(libraw_processed_image_t *_swig_go_0) {
+void _wrap_libraw_dcraw_clear_mem_libraw_7ab48979834a3756(libraw_processed_image_t *_swig_go_0) {
   libraw_processed_image_t *arg1 = (libraw_processed_image_t *) 0 ;
   
   arg1 = *(libraw_processed_image_t **)&_swig_go_0; 
@@ -750,7 +750,7 @@ void _wrap_libraw_dcraw_clear_mem_libraw_30a0215858b2f737(libraw_processed_image
 }
 
 
-void _wrap_libraw_set_demosaic_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
+void _wrap_libraw_set_demosaic_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int arg2 ;
   
@@ -762,7 +762,7 @@ void _wrap_libraw_set_demosaic_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0
 }
 
 
-void _wrap_libraw_set_output_color_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
+void _wrap_libraw_set_output_color_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int arg2 ;
   
@@ -774,7 +774,7 @@ void _wrap_libraw_set_output_color_libraw_30a0215858b2f737(libraw_data_t *_swig_
 }
 
 
-void _wrap_libraw_set_user_mul_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo _swig_go_1, float _swig_go_2) {
+void _wrap_libraw_set_user_mul_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo _swig_go_1, float _swig_go_2) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int arg2 ;
   float arg3 ;
@@ -788,7 +788,7 @@ void _wrap_libraw_set_user_mul_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0
 }
 
 
-void _wrap_libraw_set_output_bps_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
+void _wrap_libraw_set_output_bps_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int arg2 ;
   
@@ -800,7 +800,7 @@ void _wrap_libraw_set_output_bps_libraw_30a0215858b2f737(libraw_data_t *_swig_go
 }
 
 
-void _wrap_libraw_set_gamma_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo _swig_go_1, float _swig_go_2) {
+void _wrap_libraw_set_gamma_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo _swig_go_1, float _swig_go_2) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int arg2 ;
   float arg3 ;
@@ -814,7 +814,7 @@ void _wrap_libraw_set_gamma_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, i
 }
 
 
-void _wrap_libraw_set_no_auto_bright_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
+void _wrap_libraw_set_no_auto_bright_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int arg2 ;
   
@@ -826,7 +826,7 @@ void _wrap_libraw_set_no_auto_bright_libraw_30a0215858b2f737(libraw_data_t *_swi
 }
 
 
-void _wrap_libraw_set_bright_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, float _swig_go_1) {
+void _wrap_libraw_set_bright_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, float _swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   float arg2 ;
   
@@ -838,7 +838,7 @@ void _wrap_libraw_set_bright_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, 
 }
 
 
-void _wrap_libraw_set_highlight_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
+void _wrap_libraw_set_highlight_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int arg2 ;
   
@@ -850,7 +850,7 @@ void _wrap_libraw_set_highlight_libraw_30a0215858b2f737(libraw_data_t *_swig_go_
 }
 
 
-void _wrap_libraw_set_fbdd_noiserd_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
+void _wrap_libraw_set_fbdd_noiserd_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int arg2 ;
   
@@ -862,7 +862,7 @@ void _wrap_libraw_set_fbdd_noiserd_libraw_30a0215858b2f737(libraw_data_t *_swig_
 }
 
 
-intgo _wrap_libraw_get_raw_height_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+intgo _wrap_libraw_get_raw_height_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -875,7 +875,7 @@ intgo _wrap_libraw_get_raw_height_libraw_30a0215858b2f737(libraw_data_t *_swig_g
 }
 
 
-intgo _wrap_libraw_get_raw_width_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+intgo _wrap_libraw_get_raw_width_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -888,7 +888,7 @@ intgo _wrap_libraw_get_raw_width_libraw_30a0215858b2f737(libraw_data_t *_swig_go
 }
 
 
-intgo _wrap_libraw_get_iheight_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+intgo _wrap_libraw_get_iheight_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -901,7 +901,7 @@ intgo _wrap_libraw_get_iheight_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0
 }
 
 
-intgo _wrap_libraw_get_iwidth_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+intgo _wrap_libraw_get_iwidth_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -914,7 +914,7 @@ intgo _wrap_libraw_get_iwidth_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0)
 }
 
 
-float _wrap_libraw_get_cam_mul_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
+float _wrap_libraw_get_cam_mul_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int arg2 ;
   float result;
@@ -929,7 +929,7 @@ float _wrap_libraw_get_cam_mul_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0
 }
 
 
-float _wrap_libraw_get_pre_mul_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
+float _wrap_libraw_get_pre_mul_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int arg2 ;
   float result;
@@ -944,7 +944,7 @@ float _wrap_libraw_get_pre_mul_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0
 }
 
 
-float _wrap_libraw_get_rgb_cam_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo _swig_go_1, intgo _swig_go_2) {
+float _wrap_libraw_get_rgb_cam_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo _swig_go_1, intgo _swig_go_2) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int arg2 ;
   int arg3 ;
@@ -961,7 +961,7 @@ float _wrap_libraw_get_rgb_cam_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0
 }
 
 
-intgo _wrap_libraw_get_color_maximum_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+intgo _wrap_libraw_get_color_maximum_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -974,7 +974,7 @@ intgo _wrap_libraw_get_color_maximum_libraw_30a0215858b2f737(libraw_data_t *_swi
 }
 
 
-void _wrap_libraw_set_output_tif_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
+void _wrap_libraw_set_output_tif_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0, intgo _swig_go_1) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   int arg2 ;
   
@@ -986,7 +986,7 @@ void _wrap_libraw_set_output_tif_libraw_30a0215858b2f737(libraw_data_t *_swig_go
 }
 
 
-libraw_iparams_t *_wrap_libraw_get_iparams_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+libraw_iparams_t *_wrap_libraw_get_iparams_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   libraw_iparams_t *result = 0 ;
   libraw_iparams_t *_swig_go_result;
@@ -999,7 +999,7 @@ libraw_iparams_t *_wrap_libraw_get_iparams_libraw_30a0215858b2f737(libraw_data_t
 }
 
 
-libraw_lensinfo_t *_wrap_libraw_get_lensinfo_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+libraw_lensinfo_t *_wrap_libraw_get_lensinfo_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   libraw_lensinfo_t *result = 0 ;
   libraw_lensinfo_t *_swig_go_result;
@@ -1012,7 +1012,7 @@ libraw_lensinfo_t *_wrap_libraw_get_lensinfo_libraw_30a0215858b2f737(libraw_data
 }
 
 
-libraw_imgother_t *_wrap_libraw_get_imgother_libraw_30a0215858b2f737(libraw_data_t *_swig_go_0) {
+libraw_imgother_t *_wrap_libraw_get_imgother_libraw_7ab48979834a3756(libraw_data_t *_swig_go_0) {
   libraw_data_t *arg1 = (libraw_data_t *) 0 ;
   libraw_imgother_t *result = 0 ;
   libraw_imgother_t *_swig_go_result;

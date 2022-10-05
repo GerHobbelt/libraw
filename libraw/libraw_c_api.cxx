@@ -19,7 +19,7 @@ it under the terms of the one of two licenses as you choose:
 
 #include <math.h>
 #include <errno.h>
-#include "libraw/libraw.h"
+#include "libraw.h"
 
 #ifdef __cplusplus
 // #include <new> (swig doesn't support this lib and it isn't needed anyways)
