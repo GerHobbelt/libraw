@@ -1,5 +1,5 @@
 /* -*- C++ -*-
- * Copyright 2019-2021 LibRaw LLC (info@libraw.org)
+ * Copyright 2020 LibRaw LLC (info@libraw.org)
  *
 
  LibRaw is free software; you can redistribute it and/or modify
@@ -18,8 +18,8 @@
 
 #include <math.h>
 #define LIBRAW_LIBRARY_BUILD
-#include "libraw/libraw.h"
-#include "internal/defines.h"
-#include "internal/var_defines.h"
+#include "../libraw/libraw.h"
+#include "./defines.h"
+#include "./var_defines.h"
 
 #endif

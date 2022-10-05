@@ -1,6 +1,6 @@
 /* -*- C++ -*-
  * File: internal/libraw_cxx_defs.h
- * Copyright 2008-2021 LibRaw LLC (info@libraw.org)
+ * Copyright 2008-2020 LibRaw LLC (info@libraw.org)
  * Created: Sat Aug  17, 2020
 
 LibRaw is free software; you can redistribute it and/or modify
@@ -20,13 +20,13 @@ it under the terms of the one of two licenses as you choose:
 #include <math.h>
 #include <errno.h>
 #include <float.h>
-#include <new>
-#include <exception>
+// #include <new> (swig doesn't support this lib and it isn't needed anyways)
+// include <exception>
 #include <sys/types.h>
 #include <sys/stat.h>
 #define LIBRAW_LIBRARY_BUILD
-#include "libraw/libraw.h"
-#include "internal/defines.h"
+#include "../libraw/libraw.h"
+#include "./defines.h"
 #ifdef USE_ZLIB
 #include <zlib.h>
 #endif
@@ -111,9 +111,6 @@ CameraMetaDataLR *make_camera_metadata();
     case LIBRAW_EXCEPTION_BAD_CROP:                                            \
       recycle();                                                               \
       return LIBRAW_BAD_CROP;                                                  \
-    case LIBRAW_EXCEPTION_UNSUPPORTED_FORMAT:                                  \
-      recycle();                                                               \
-      return LIBRAW_FILE_UNSUPPORTED;                                          \
     default:                                                                   \
       return LIBRAW_UNSPECIFIED_ERROR;                                         \
     }                                                                          \

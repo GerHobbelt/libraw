@@ -1,5 +1,5 @@
 /* -*- C++ -*-
- * Copyright 2019-2021 LibRaw LLC (info@libraw.org)
+ * Copyright 2020 LibRaw LLC (info@libraw.org)
  *
 
  LibRaw is free software; you can redistribute it and/or modify
@@ -18,8 +18,8 @@
 
 #define LIBRAW_LIBRARY_BUILD
 #define LIBRAW_IO_REDEFINED
-#include "libraw/libraw.h"
-#include "internal/defines.h"
+#include "../libraw/libraw.h"
+#include "./defines.h"
 #define SRC_USES_SHRINK
 #define SRC_USES_BLACK
 #define SRC_USES_CURVE
