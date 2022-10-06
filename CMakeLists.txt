@@ -64,7 +64,7 @@ message("\n--------------------------------\n")
 set(${PROJECT_NAME}_sources ${CMAKE_SOURCE_DIR}/src/librawgo.i )
 
 
-swig_add_library(${PROJECT_NAME} TYPE STATIC LANGUAGE go SOURCES ${${PROJECT_NAME}_sources})
+swig_add_library(${PROJECT_NAME} TYPE SHARED LANGUAGE go SOURCES ${${PROJECT_NAME}_sources})
 
 # NOTE: this will slow down compilation, but you'll have static code analysis :)
 if(CLANG_TIDY)
