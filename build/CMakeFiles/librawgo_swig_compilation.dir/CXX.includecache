@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/rich/code/libraw/LibRaw-0.20.2/src/librawgo.i
+libraw/libraw.h
+/home/rich/code/libraw/LibRaw-0.20.2/src/libraw/libraw.h
+libraw/libraw_alloc.h
+/home/rich/code/libraw/LibRaw-0.20.2/src/libraw/libraw_alloc.h
+libraw/libraw_const.h
+/home/rich/code/libraw/LibRaw-0.20.2/src/libraw/libraw_const.h
+libraw/libraw_datastream.h
+/home/rich/code/libraw/LibRaw-0.20.2/src/libraw/libraw_datastream.h
+libraw/libraw_internal.h
+/home/rich/code/libraw/LibRaw-0.20.2/src/libraw/libraw_internal.h
+libraw/libraw_types.h
+/home/rich/code/libraw/LibRaw-0.20.2/src/libraw/libraw_types.h
+libraw/libraw_version.h
+/home/rich/code/libraw/LibRaw-0.20.2/src/libraw/libraw_version.h
+libraw/libraw.h
+/home/rich/code/libraw/LibRaw-0.20.2/src/libraw/libraw.h
+libraw/libraw_alloc.h
+/home/rich/code/libraw/LibRaw-0.20.2/src/libraw/libraw_alloc.h
+libraw/libraw_const.h
+/home/rich/code/libraw/LibRaw-0.20.2/src/libraw/libraw_const.h
+libraw/libraw_datastream.h
+/home/rich/code/libraw/LibRaw-0.20.2/src/libraw/libraw_datastream.h
+libraw/libraw_internal.h
+/home/rich/code/libraw/LibRaw-0.20.2/src/libraw/libraw_internal.h
+libraw/libraw_types.h
+/home/rich/code/libraw/LibRaw-0.20.2/src/libraw/libraw_types.h
+libraw/libraw_version.h
+/home/rich/code/libraw/LibRaw-0.20.2/src/libraw/libraw_version.h
+

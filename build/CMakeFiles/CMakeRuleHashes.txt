@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+fc64ed1b73902ba4ebc6f0f19b96b812 CMakeFiles/librawgo.dir/librawgoGO.stamp
+21557a5c584fdbcd7133882dfed99758 CMakeFiles/librawgo_swig_compilation

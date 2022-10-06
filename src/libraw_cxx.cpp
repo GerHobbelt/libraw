@@ -22,7 +22,7 @@ it under the terms of the one of three licenses as you choose:
 #include <errno.h>
 #include <float.h>
 #include <math.h>
-#include <new>
+// #include <new>
 #include <sys/types.h>
 #include <sys/stat.h>
 #ifndef WIN32
@@ -1289,7 +1289,7 @@ void LibRaw::kodak_thumb_loader()
 
 
 
-// Достает thumbnail из файла, ставит thumb_format в соответствии с форматом
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ thumbnail пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ thumb_format пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 int LibRaw::unpack_thumb(void)
 {
     CHECK_ORDER_LOW(LIBRAW_PROGRESS_IDENTIFY);
