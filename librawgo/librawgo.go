@@ -13,7 +13,7 @@
 package librawgo
 
 /*
-#cgo LDFLAGS: -Llibrawgo.so -lrawgo -lraw
+#cgo LDFLAGS: -Llibrawgo.so -lrawgo
 #define intgo swig_intgo
 typedef void *swig_voidp;
 
