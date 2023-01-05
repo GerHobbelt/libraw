@@ -1,5 +1,5 @@
 /*
-  Copyright 2008-2020 LibRaw LLC (info@libraw.org)
+  Copyright 2008-2021 LibRaw LLC (info@libraw.org)
 
 LibRaw is free software; you can redistribute it and/or modify
 it under the terms of the one of two licenses as you choose:
@@ -172,16 +172,14 @@ float fMAX(float a, float b) { return MAX(a, b); }
         3 G R G R G R	3 B G B G B G	3 R G R G R G	3 G B G B G B
  */
 
-<<<<<<< HEAD
 // _RGBG means R, G1, B, G2 sequence
 #define GRBG_2_RGBG(q)    (q ^ (q >> 1) ^ 1)
 #define RGGB_2_RGBG(q)    (q ^ (q >> 1))
 #define BG2RG1_2_RGBG(q)  (q ^ 2)
+#define G2BRG1_2_RGBG(q)  (q ^ (q >> 1) ^ 3)
 #define GRGB_2_RGBG(q)    (q ^ 1)
 #define RBGG_2_RGBG(q)    ((q >> 1) | ((q & 1) << 1))
 
-=======
->>>>>>> 97208824c61059805bc104d48ebc2f38cff856cf
 #define RAWINDEX(row, col) ((row)*raw_width + (col))
 #define RAW(row, col) raw_image[(row)*raw_width + (col)]
 #define BAYER(row, col)                                                        \
