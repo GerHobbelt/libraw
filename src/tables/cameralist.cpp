@@ -938,6 +938,7 @@ static const char *static_camera_list[] = {
 	"Panasonic DC-S1R",
 	"Panasonic DC-S5",
 	"Panasonic DC-S5 MkII",
+	"Panasonic DC-S9",
 	"Panasonic DMC-ZS40, DMC-TZ60 / TZ61",
 	"Panasonic DMC-ZS50, DMC-TZ70 / TZ71",
 	"Panasonic DMC-ZS60, DMC-TZ80 / TZ81 / TZ82 / TZ85",
