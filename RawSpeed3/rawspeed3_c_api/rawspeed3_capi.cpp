@@ -1,7 +1,7 @@
 #include "rawspeed3_capi.h"
 #include "RawSpeed-API.h"
 #define HAVE_PUGIXML
-#include <../pugixml/pugixml.hpp> // for xml_document, xml_pars...
+#include <pugixml.hpp> // for xml_document, xml_pars...
 
 extern const char* _rawspeed3_data_xml;
 
