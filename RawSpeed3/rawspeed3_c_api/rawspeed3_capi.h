@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#ifdef _MSC_VER
+#if defined(_MSC_VER) && !defined(LIBRAW_NODLL)
 #ifdef RAWSPEED_BUILDLIB
 #define DllDef __declspec(dllexport)
 #else
