@@ -54,6 +54,8 @@ int main(int ac, char *av[])
     return 0;
   }
 
+#undef OUT
+
 #define P1 RawProcessor.imgdata.idata
 #define S RawProcessor.imgdata.sizes
 #define C RawProcessor.imgdata.color

@@ -396,10 +396,10 @@ protected:
   }
 
   void adjust_bl();
-  void *malloc(size_t t);
-  void *calloc(size_t n, size_t t);
-  void *realloc(void *p, size_t s);
-  void free(void *p);
+  void *raw_malloc(size_t t);
+  void *raw_calloc(size_t n, size_t t);
+  void *raw_realloc(void *p, size_t s);
+  void raw_free(void *p);
   void derror();
 
   LibRaw_TLS *tls;

@@ -17,7 +17,7 @@ it under the terms of the one of two licenses as you choose:
 
 
  */
-#ifdef _MSC_VER
+#if defined(_MSC_VER) && !defined(_CRT_SECURE_NO_WARNINGS)
 // suppress sprintf-related warning. sprintf() is permitted in sample code
 #define _CRT_SECURE_NO_WARNINGS
 #endif

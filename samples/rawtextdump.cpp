@@ -21,13 +21,14 @@ it under the terms of the one of two licenses as you choose:
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#ifndef WIN32
+
+#include "libraw/libraw.h"
+
+#ifndef LIBRAW_WIN32_CALLS
 #include <netinet/in.h>
 #else
 #include <winsock2.h>
 #endif
-
-#include "libraw/libraw.h"
 
 void usage(const char *av)
 {

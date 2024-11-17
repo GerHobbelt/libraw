@@ -255,29 +255,29 @@ int LibRaw::sraw_midpoint()
     return 0;
 }
 
-void *LibRaw::malloc(size_t t)
+void *LibRaw::raw_malloc(size_t t)
 {
-  void *p = memmgr.malloc(t);
+  void *p = memmgr.raw_malloc(t);
   if (!p)
     throw LIBRAW_EXCEPTION_ALLOC;
   return p;
 }
-void *LibRaw::realloc(void *q, size_t t)
+void *LibRaw::raw_realloc(void *q, size_t t)
 {
-  void *p = memmgr.realloc(q, t);
+  void *p = memmgr.raw_realloc(q, t);
   if (!p)
     throw LIBRAW_EXCEPTION_ALLOC;
   return p;
 }
 
-void *LibRaw::calloc(size_t n, size_t t)
+void *LibRaw::raw_calloc(size_t n, size_t t)
 {
-  void *p = memmgr.calloc(n, t);
+  void *p = memmgr.raw_calloc(n, t);
   if (!p)
     throw LIBRAW_EXCEPTION_ALLOC;
   return p;
 }
-void LibRaw::free(void *p) { memmgr.free(p); }
+void LibRaw::raw_free(void *p) { memmgr.raw_free(p); }
 
 void LibRaw::recycle_datastream()
 {

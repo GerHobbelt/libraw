@@ -82,6 +82,8 @@ int main(int ac, char *av[])
 
   putenv((char *)"TZ=UTC"); // dcraw compatibility, affects TIFF datestamp field
 
+#undef OUT
+
 #define P1 RawProcessor->imgdata.idata
 #define S RawProcessor->imgdata.sizes
 #define C RawProcessor->imgdata.color

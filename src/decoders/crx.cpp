@@ -1741,7 +1741,7 @@ int crxParamInit(CrxImage *img, CrxBandParam **param, uint64_t subbandMdatOffset
 #ifdef LIBRAW_CR3_MEMPOOL
                    img->memmgr.
 #endif
-               calloc(1, sizeof(CrxBandParam) + sizeof(int32_t) * paramLength + progrDataSize);
+               raw_calloc(1, sizeof(CrxBandParam) + sizeof(int32_t) * paramLength + progrDataSize);
 
   if (!paramBuf)
     return -1;
@@ -1807,7 +1807,7 @@ int crxSetupSubbandData(CrxImage *img, CrxPlaneComp *planeComp, const CrxTile *t
 #ifdef LIBRAW_CR3_MEMPOOL
                              img->memmgr.
 #endif
-                         malloc(compDataSize);
+                         raw_malloc(compDataSize);
   if (!planeComp->compBuf)
     return -1;
 
@@ -2007,7 +2007,7 @@ int crxMakeQStep(CrxImage *img, CrxTile *tile, int32_t *qpTable, uint32_t /*tota
 #ifdef LIBRAW_CR3_MEMPOOL
                       img->memmgr.
 #endif
-                  malloc(totalHeight * qpWidth * sizeof(uint32_t) + img->levels * sizeof(CrxQStep));
+                  raw_malloc(totalHeight * qpWidth * sizeof(uint32_t) + img->levels * sizeof(CrxQStep));
 
   if (!tile->qStep)
     return -1;
@@ -2263,7 +2263,7 @@ int crxReadImageHeaders(crx_data_header_t *hdr, CrxImage *img, uint8_t *mdatPtr,
 #ifdef LIBRAW_CR3_MEMPOOL
                        img->memmgr.
 #endif
-                   calloc(sizeof(CrxTile) * nTiles + sizeof(CrxPlaneComp) * nTiles * img->nPlanes +
+                   raw_calloc(sizeof(CrxTile) * nTiles + sizeof(CrxPlaneComp) * nTiles * img->nPlanes +
                               sizeof(CrxSubband) * nTiles * img->nPlanes * img->subbandCount,
                           1);
     if (!img->tiles)
@@ -2536,7 +2536,7 @@ int crxSetupImageData(crx_data_header_t *hdr, CrxImage *img, int16_t *outBuf, ui
 #ifdef LIBRAW_CR3_MEMPOOL
                           img->memmgr.
 #endif
-                      malloc(img->planeHeight * img->planeWidth * img->nPlanes * ((img->samplePrecision + 7) >> 3));
+                      raw_malloc(img->planeHeight * img->planeWidth * img->nPlanes * ((img->samplePrecision + 7) >> 3));
     if (!img->planeBuf)
       return -1;
   }

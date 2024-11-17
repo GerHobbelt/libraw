@@ -29,7 +29,9 @@ it under the terms of the one of two licenses as you choose:
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif
+#ifndef _USE_MATH_DEFINES
 #define _USE_MATH_DEFINES
+#endif
 #include <ctype.h>
 #include <errno.h>
 #include <fcntl.h>
