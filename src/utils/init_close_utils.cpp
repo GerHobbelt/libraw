@@ -120,6 +120,10 @@ LibRaw::~LibRaw()
     _rawspeed_camerameta = NULL;
   }
 #endif
+
+#ifndef NO_LCMS
+  destroy_cmsContextID();
+#endif
 }
 
 void x3f_clear(void *);

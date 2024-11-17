@@ -409,6 +409,13 @@ protected:
   libraw_memmgr memmgr;
   libraw_callbacks_t callbacks;
 
+#ifndef NO_LCMS
+	cmsContext _cmsContextID = nullptr;
+
+	cmsContext cmsContextID();
+  void destroy_cmsContextID();
+#endif
+
   //void (LibRaw::*write_thumb)();
   void (LibRaw::*write_fun)();
   void (LibRaw::*load_raw)();

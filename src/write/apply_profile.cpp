@@ -28,10 +28,10 @@ void LibRaw::apply_profile(const char *input, const char *output)
   unsigned size;
 
   if (strcmp(input, "embed"))
-    hInProfile = cmsOpenProfileFromFile(input, "r");
+    hInProfile = cmsOpenProfileFromFile(cmsContextID(), input, "r");
   else if (profile_length)
   {
-    hInProfile = cmsOpenProfileFromMem(imgdata.color.profile, profile_length);
+    hInProfile = cmsOpenProfileFromMem(cmsContextID(), imgdata.color.profile, profile_length);
   }
   else
   {
@@ -43,7 +43,7 @@ void LibRaw::apply_profile(const char *input, const char *output)
     return;
   }
   if (!output)
-    hOutProfile = cmsCreate_sRGBProfile();
+    hOutProfile = cmsCreate_sRGBProfile(cmsContextID());
   else if ((fp = fopen(output, "rb")))
   {
     fread(&size, 4, 1, fp);
@@ -51,7 +51,7 @@ void LibRaw::apply_profile(const char *input, const char *output)
     oprof = (unsigned *)calloc(size = ntohl(size),1);
     fread(oprof, 1, size, fp);
     fclose(fp);
-    if (!(hOutProfile = cmsOpenProfileFromMem(oprof, size)))
+    if (!(hOutProfile = cmsOpenProfileFromMem(cmsContextID(), oprof, size)))
     {
       free(oprof);
       oprof = 0;
@@ -63,14 +63,29 @@ void LibRaw::apply_profile(const char *input, const char *output)
     goto quit;
   }
   RUN_CALLBACK(LIBRAW_PROGRESS_APPLY_PROFILE, 0, 2);
-  hTransform = cmsCreateTransform(hInProfile, TYPE_RGBA_16, hOutProfile,
+  hTransform = cmsCreateTransform(cmsContextID(), hInProfile, TYPE_RGBA_16, hOutProfile,
                                   TYPE_RGBA_16, INTENT_PERCEPTUAL, 0);
-  cmsDoTransform(hTransform, image, image, width * height);
+  cmsDoTransform(cmsContextID(), hTransform, image, image, width * height);
   raw_color = 1; /* Don't use rgb_cam with a profile */
-  cmsDeleteTransform(hTransform);
-  cmsCloseProfile(hOutProfile);
+  cmsDeleteTransform(cmsContextID(), hTransform);
+  cmsCloseProfile(cmsContextID(), hOutProfile);
 quit:
-  cmsCloseProfile(hInProfile);
+  cmsCloseProfile(cmsContextID(), hInProfile);
   RUN_CALLBACK(LIBRAW_PROGRESS_APPLY_PROFILE, 1, 2);
 }
+
+cmsContext LibRaw::cmsContextID() {
+	if (!_cmsContextID) {
+      _cmsContextID = cmsCreateContext(NULL, NULL);
+	}
+	return _cmsContextID;
+}
+
+void LibRaw::destroy_cmsContextID() {
+  if (_cmsContextID)
+  {
+    cmsDeleteContext(_cmsContextID);
+  }
+}
+
 #endif
