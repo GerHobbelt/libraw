@@ -1278,13 +1278,13 @@ void LibRaw::parseCanonMakernotes(unsigned tag, unsigned /*type*/, unsigned len,
       imCanon.ColorDataVer = 12;
       AsShot_Auto_MeasuredWB(0x0069);     
 
-      fseek(ifp, save1 + (0x0069+0x0005 << 1), SEEK_SET);
+      fseek(ifp, save1 + ((0x0069+0x0005) << 1), SEEK_SET);
       Canon_WBpresets(2, 12);
-      fseek(ifp, save1 + (0x0069+0x00d7 << 1), SEEK_SET);
+      fseek(ifp, save1 + ((0x0069+0x00d7) << 1), SEEK_SET);
       Canon_WBCTpresets(0);
-      offsetChannelBlackLevel2 = save1 + (0x0069+0x0116 << 1); 
-      offsetChannelBlackLevel  = save1 + (0x0069+0x0227 << 1); 
-      offsetWhiteLevels        = save1 + (0x0069+0x022B << 1); 
+      offsetChannelBlackLevel2 = save1 + ((0x0069+0x0116) << 1); 
+      offsetChannelBlackLevel  = save1 + ((0x0069+0x0227) << 1); 
+      offsetWhiteLevels        = save1 + ((0x0069+0x022B) << 1); 
       break;
 
    default:
