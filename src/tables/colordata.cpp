@@ -1272,6 +1272,8 @@ int LibRaw::adobe_coeff(unsigned make_idx, const char *t_model,
       { 10308, -4206,  -783, -4088, 12102,  2229,  -125,  1051,  5912 } },
     {LIBRAW_CAMERAMAKER_Panasonic, "DC-S5", 0, 0,
       { 9744,-3905,-779,-4899,12807,2324,-798,1630,5827 } },
+    {LIBRAW_CAMERAMAKER_Panasonic, "DC-S9", 0, 0,
+      { 9983,-3890,-841,-4180,12164,2263,-249,1139,5766 } },
 
     { LIBRAW_CAMERAMAKER_Panasonic, "DMC-CM1", -15, 0, // same CMs: DMC-CM1, DMC-CM10
       { 8770,-3194,-820,-2871,11281,1803,-513,1552,4434 } },
