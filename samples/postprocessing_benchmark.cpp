@@ -35,7 +35,13 @@ it under the terms of the one of two licenses as you choose:
 void timerstart(void);
 float timerend(void);
 
-int main(int argc, char *argv[])
+
+#if defined(BUILD_MONOLITHIC)
+#define main raw_postprocess_benchmark_main
+#endif
+
+extern "C"
+int main(int argc, const char **argv)
 {
   int i, ret, rep = 1;
   LibRaw RawProcessor;
@@ -74,7 +80,7 @@ int main(int argc, char *argv[])
   argv[argc] = (char *)"";
   for (arg = 1; (((opm = argv[arg][0]) - 2) | 2) == '+';)
   {
-    char *optstr = argv[arg];
+    const char *optstr = argv[arg];
     opt = argv[arg++][1];
     if ((cp = strchr(sp = (char *)"HqmnsBR", opt)) != 0)
       for (i = 0; i < "1111141"[cp - sp] - '0'; i++)

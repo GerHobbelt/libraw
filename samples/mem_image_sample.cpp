@@ -139,7 +139,13 @@ void write_thumb(libraw_processed_image_t *img, const char *basename)
   }
 }
 
-int main(int ac, char *av[])
+
+#if defined(BUILD_MONOLITHIC)
+#define main raw_mem_image_sample_main
+#endif
+
+extern "C"
+int main(int ac, const char **av)
 {
   int i, ret, output_thumbs = 0;
 #ifdef USE_JPEG

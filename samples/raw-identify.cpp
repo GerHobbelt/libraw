@@ -68,10 +68,10 @@ float roundf(float f) { return floorf(f + 0.5); }
 #define C MyCoolRawProcessor.imgdata.color
 #define T MyCoolRawProcessor.imgdata.thumbnail
 
-void print_verbose(FILE *, LibRaw &MyCoolRawProcessor, std::string &fn);
-void print_wbfun(FILE *, LibRaw &MyCoolRawProcessor, std::string &fn);
-void print_szfun(FILE *, LibRaw &MyCoolRawProcessor, std::string &fn);
-void print_unpackfun(FILE *, LibRaw &MyCoolRawProcessor, int print_frame, std::string &fn);
+static void print_verbose(FILE *, LibRaw &MyCoolRawProcessor, std::string &fn);
+static void print_wbfun(FILE *, LibRaw &MyCoolRawProcessor, std::string &fn);
+static void print_szfun(FILE *, LibRaw &MyCoolRawProcessor, std::string &fn);
+static void print_unpackfun(FILE *, LibRaw &MyCoolRawProcessor, int print_frame, std::string &fn);
 
 /*
 table of fluorescents:
@@ -139,7 +139,7 @@ static const struct
     {LIBRAW_WBI_Kelvin, "WBI_Kelvin", "Kelvin", 1},
 };
 
-const char *WB_idx2str(unsigned WBi)
+static const char *WB_idx2str(unsigned WBi)
 {
   for (int i = 0; i < int(sizeof WBToStr / sizeof *WBToStr); i++)
     if (WBToStr[i].NumId == (int)WBi)
@@ -147,7 +147,7 @@ const char *WB_idx2str(unsigned WBi)
   return 0;
 }
 
-const char *WB_idx2hrstr(unsigned WBi)
+static const char *WB_idx2hrstr(unsigned WBi)
 {
   for (int i = 0; i < int(sizeof WBToStr / sizeof *WBToStr); i++)
     if (WBToStr[i].NumId == (int)WBi)
@@ -155,13 +155,13 @@ const char *WB_idx2hrstr(unsigned WBi)
   return 0;
 }
 
-double _log2(double a)
+static double _log2(double a)
 {
   if(a > 0.00000000001) return log(a)/log(2.0);
   return -1000;
 }
 
-void trimSpaces(char *s)
+static void trimSpaces(char *s)
 {
   char *p = s;
   if (!strncasecmp(p, "NO=", 3))
@@ -176,7 +176,7 @@ void trimSpaces(char *s)
   memmove(s, p, l + 1);
 }
 
-void print_usage(const char *pname)
+static void print_usage(const char *pname)
 {
   printf("Usage: %s [options] inputfiles\n", pname);
   printf("Options:\n"
@@ -192,13 +192,19 @@ void print_usage(const char *pname)
          "\t-o filename\toutput to filename\n");
 }
 
-int main(int ac, char *av[])
+
+#if defined(BUILD_MONOLITHIC)
+#define main raw_raw_identify_sample_main
+#endif
+
+extern "C"
+int main(int ac, const char **av)
 {
   int ret;
   int verbose = 0, print_sz = 0, print_unpack = 0, print_frame = 0, print_wb = 0;
   LibRaw MyCoolRawProcessor;
-  char *filelistfile = NULL;
-  char *outputfilename = NULL;
+  const char *filelistfile = NULL;
+  const char *outputfilename = NULL;
   FILE *outfile = stdout;
   std::vector<std::string> filelist;
 
@@ -308,7 +314,7 @@ int main(int ac, char *av[])
       fprintf(of, "%6.4f\t%6.4f\t%6.4f\n", mat[r][0], mat[r][1], mat[r][2]);                                           \
   } while (0)
 
-void print_verbose(FILE *outfile, LibRaw &MyCoolRawProcessor, std::string &fn)
+static void print_verbose(FILE *outfile, LibRaw &MyCoolRawProcessor, std::string &fn)
 {
   int WBi;
   float denom;
@@ -728,7 +734,7 @@ void print_szfun(FILE *outfile, LibRaw &MyCoolRawProcessor, std::string &fn)
   fprintf(outfile, "%s\t%s\t%s\t%d\t%d\n", fn.c_str(), P1.make, P1.model, S.width, S.height);
 }
 
-void print_unpackfun(FILE *outfile, LibRaw &MyCoolRawProcessor, int print_frame, std::string &fn)
+static void print_unpackfun(FILE *outfile, LibRaw &MyCoolRawProcessor, int print_frame, std::string &fn)
 {
   char frame[48] = "";
   if (print_frame)

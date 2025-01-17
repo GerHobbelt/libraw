@@ -44,14 +44,14 @@ it under the terms of the one of two licenses as you choose:
   } while (0)
 
 // global settings
-int verbose = 0, use_camera_wb = 0, use_auto_wb = 0, tiff_mode = 0;
+static int verbose = 0, use_camera_wb = 0, use_auto_wb = 0, tiff_mode = 0;
 
 // global file queue
-HANDLE qmutex;
-char **queue = NULL;
-size_t qsize = 0, qptr = 0;
+static HANDLE qmutex;
+static char **queue = NULL;
+static size_t qsize = 0, qptr = 0;
 
-char *get_next_file()
+static char *get_next_file()
 {
   char *ret;
   DWORD dwWaitResult;
@@ -76,7 +76,7 @@ char *get_next_file()
 }
 
 // thread routine
-int process_files(void *q)
+static int process_files(void *q)
 {
   int ret;
   int count = 0;
@@ -121,7 +121,7 @@ int process_files(void *q)
   return 0;
 }
 
-void usage(const char *p)
+static int usage(const char *p)
 {
   printf("Options:\n"
          "-J n  - set parallel job count (default 2)\n"
@@ -129,10 +129,10 @@ void usage(const char *p)
          "-w    - use camera white balance\n"
          "-T    - output TIFF instead of PPM\n"
          "-a    - average image for white balance\n");
-  exit(1);
+  return 1;
 }
 
-int show_files(void *q)
+static int show_files(void *q)
 {
   char *p;
   int cnt = 0;
@@ -144,14 +144,20 @@ int show_files(void *q)
   return cnt;
 }
 
-int main(int ac, char *av[])
+
+#if defined(BUILD_MONOLITHIC)
+#define main raw_half_mt_win32_sample_main
+#endif
+
+extern "C"
+int main(int ac, const char **av)
 {
   int i, max_threads = 2;
   HANDLE *threads;
   DWORD ThreadID;
 
   if (ac < 2)
-    usage(av[0]);
+    return usage(av[0]);
 
   queue = calloc(ac - 1, sizeof(queue[0]));
 

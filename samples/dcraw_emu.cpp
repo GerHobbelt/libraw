@@ -54,7 +54,7 @@ it under the terms of the one of two licenses as you choose:
 #include "dng_info.h"
 #endif
 
-void usage(const char *prog)
+static int usage(const char *prog)
 {
   printf("dcraw_emu: almost complete dcraw emulator\n");
   printf("Usage:  %s [OPTION]... [FILE]...\n", prog);
@@ -130,12 +130,12 @@ void usage(const char *prog)
 #endif
          "-doutputflags N set params.output_flags to N\n"
   );
-  exit(1);
+  return EXIT_FAILURE;
 }
 
 static int verbosity = 0;
-int cnt = 0;
-int my_progress_callback(void *d, enum LibRaw_progress p, int iteration,
+static int cnt = 0;
+static int my_progress_callback(void *d, enum LibRaw_progress p, int iteration,
                          int expected)
 {
   char *passed = (char *)(d ? d : "default string"); // data passed to callback
@@ -161,8 +161,8 @@ int my_progress_callback(void *d, enum LibRaw_progress p, int iteration,
 // timer
 #ifndef LIBRAW_WIN32_CALLS
 static struct timeval start, end;
-void timerstart(void) { gettimeofday(&start, NULL); }
-void timerprint(const char *msg, const char *filename)
+static void timerstart(void) { gettimeofday(&start, NULL); }
+static void timerprint(const char *msg, const char *filename)
 {
   gettimeofday(&end, NULL);
   float msec = (end.tv_sec - start.tv_sec) * 1000.0f +
@@ -170,9 +170,9 @@ void timerprint(const char *msg, const char *filename)
   printf("Timing: %s/%s: %6.3f msec\n", filename, msg, msec);
 }
 #else
-LARGE_INTEGER start;
-void timerstart(void) { QueryPerformanceCounter(&start); }
-void timerprint(const char *msg, const char *filename)
+static LARGE_INTEGER start;
+static void timerstart(void) { QueryPerformanceCounter(&start); }
+static void timerprint(const char *msg, const char *filename)
 {
   LARGE_INTEGER unit, end;
   QueryPerformanceCounter(&end);
@@ -197,7 +197,7 @@ struct file_mapping
 #endif
 };
 
-void create_mapping(struct file_mapping& data, const std::string& fn)
+static void create_mapping(struct file_mapping& data, const std::string& fn)
 {
 #ifdef LIBRAW_WIN32_CALLS
 	std::wstring fpath(fn.begin(), fn.end());
@@ -217,7 +217,7 @@ void create_mapping(struct file_mapping& data, const std::string& fn)
 #endif
 }
 
-void close_mapping(struct file_mapping& data)
+static void close_mapping(struct file_mapping& data)
 {
 #ifdef LIBRAW_WIN32_CALLS
 	if (data.map) UnmapViewOfFile(data.map);
@@ -238,10 +238,16 @@ void close_mapping(struct file_mapping& data)
 }
 
 
-int main(int argc, char *argv[])
+
+#if defined(BUILD_MONOLITHIC)
+#define main raw_dcraw_emu_sample_main
+#endif
+
+extern "C"
+int main(int argc, const char **argv)
 {
   if (argc == 1)
-    usage(argv[0]);
+    return usage(argv[0]);
 
   LibRaw RawProcessor;
   int i, arg, c, ret;
@@ -262,7 +268,7 @@ int main(int argc, char *argv[])
   argv[argc] = (char *)"";
   for (arg = 1; (((opm = argv[arg][0]) - 2) | 2) == '+';)
   {
-    char *optstr = argv[arg];
+    const char *optstr = argv[arg];
     opt = argv[arg++][1];
     if ((cp = strchr(sp = (char *)"cnbrkStqmHABCgU", opt)) != 0)
       for (i = 0; i < "111411111144221"[cp - sp] - '0'; i++)

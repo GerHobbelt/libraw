@@ -40,13 +40,19 @@ it under the terms of the one of two licenses as you choose:
 #error This code is for LibRaw 0.14+ only
 #endif
 
-void gamma_curve(unsigned short curve[]);
-void write_ppm(unsigned width, unsigned height, unsigned short *bitmap,
+static void gamma_curve(unsigned short curve[]);
+static void write_ppm(unsigned width, unsigned height, unsigned short *bitmap,
                const char *basename);
-void write_tiff(int width, int height, unsigned short *bitmap,
+static void write_tiff(int width, int height, unsigned short *bitmap,
                 const char *basename);
 
-int main(int ac, char *av[])
+
+#if defined(BUILD_MONOLITHIC)
+#define main raw_unprocessed_sample_main
+#endif
+
+extern "C"
+int main(int ac, const char **av)
 {
   int i, ret;
   int verbose = 1, autoscale = 0, use_gamma = 0, out_tiff = 0;
@@ -172,7 +178,7 @@ int main(int ac, char *av[])
   return 0;
 }
 
-void write_ppm(unsigned width, unsigned height, unsigned short *bitmap,
+static void write_ppm(unsigned width, unsigned height, unsigned short *bitmap,
                const char *fname)
 {
   if (!bitmap)
@@ -201,7 +207,7 @@ void write_ppm(unsigned width, unsigned height, unsigned short *bitmap,
 
 #define SQR(x) ((x) * (x))
 
-void gamma_curve(unsigned short *curve)
+static void gamma_curve(unsigned short *curve)
 {
 
   double pwr = 1.0 / 2.2;
@@ -252,7 +258,7 @@ void gamma_curve(unsigned short *curve)
   }
 }
 
-void tiff_set(ushort *ntag, ushort tag, ushort type, int count, int val)
+static void tiff_set(ushort *ntag, ushort tag, ushort type, int count, int val)
 {
   struct libraw_tiff_tag *tt;
   int c;
@@ -272,7 +278,7 @@ void tiff_set(ushort *ntag, ushort tag, ushort type, int count, int val)
 }
 #define TOFF(ptr) ((char *)(&(ptr)) - (char *)th)
 
-void tiff_head(int width, int height, struct tiff_hdr *th)
+static void tiff_head(int width, int height, struct tiff_hdr *th)
 {
   int c;
   time_t timestamp = time(NULL);
@@ -307,7 +313,7 @@ void tiff_head(int width, int height, struct tiff_hdr *th)
             t->tm_mon + 1, t->tm_mday, t->tm_hour, t->tm_min, t->tm_sec);
 }
 
-void write_tiff(int width, int height, unsigned short *bitmap, const char *fn)
+static void write_tiff(int width, int height, unsigned short *bitmap, const char *fn)
 {
   struct tiff_hdr th;
 

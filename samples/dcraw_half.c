@@ -38,7 +38,12 @@ it under the terms of the one of two licenses as you choose:
     continue;                                                                  \
   }
 
-int main(int ac, char *av[])
+#if defined(BUILD_MONOLITHIC)
+#define main raw_dcraw_half_sample_main
+#endif
+
+extern "C"
+int main(int ac, const char **av)
 {
   int i;
   libraw_data_t *iprc = libraw_init(0);
@@ -46,7 +51,7 @@ int main(int ac, char *av[])
   if (!iprc)
   {
     fprintf(stderr, "Cannot create libraw handle\n");
-    exit(1);
+    return 1;
   }
 
   iprc->params.half_size = 1; /* dcraw -h */

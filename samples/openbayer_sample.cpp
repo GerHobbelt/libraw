@@ -30,7 +30,13 @@ it under the terms of the one of two licenses as you choose:
 #include <sys/mman.h>
 #endif
 
-int main(int ac, char *av[])
+
+#if defined(BUILD_MONOLITHIC)
+#define main raw_openbayer_sample_main
+#endif
+
+extern "C"
+int main(int ac, const char **av)
 {
   if (ac != 2)
     return 1;
@@ -62,4 +68,6 @@ int main(int ac, char *av[])
     printf("Cannot write %s: %s\n", outfn, libraw_strerror(ret));
   else
     printf("Created %s\n", outfn);
+
+	return 0;
 }

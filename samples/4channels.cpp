@@ -33,7 +33,12 @@ it under the terms of the one of two licenses as you choose:
 #define snprintf _snprintf
 #endif
 
-int main(int ac, char *av[])
+#if defined(BUILD_MONOLITHIC)
+#define main raw_4channels_sample_main
+#endif
+
+extern "C"
+int main(int ac, const char **av)
 {
   int i, ret;
   int autoscale = 0, black_subtraction = 1, use_gamma = 0;

@@ -40,13 +40,13 @@ it under the terms of the one of two licenses as you choose:
     }                                                                          \
   } while (0)
 
-int verbose = 0, use_camera_wb = 0, use_auto_wb = 0, tiff_mode = 0;
+static int verbose = 0, use_camera_wb = 0, use_auto_wb = 0, tiff_mode = 0;
 
-pthread_mutex_t qm;
-char **queue = NULL;
-size_t qsize = 0, qptr = 0;
+static pthread_mutex_t qm;
+static char **queue = NULL;
+static size_t qsize = 0, qptr = 0;
 
-char *get_next_file()
+static char *get_next_file()
 {
   char *ret;
   if (!queue)
@@ -59,7 +59,7 @@ char *get_next_file()
   return ret;
 }
 
-void *process_files(void *q)
+static void *process_files(void *q)
 {
   int ret;
   int count = 0;
@@ -103,7 +103,7 @@ void *process_files(void *q)
   return NULL;
 }
 
-void usage(const char *p)
+static int usage(const char *p)
 {
   printf("%s: Multi-threaded LibRaw sample app. Emulates dcraw -h [-w] [-a]\n",
          p);
@@ -112,10 +112,10 @@ void usage(const char *p)
          "-v    - verbose\n"
          "-w    - use camera white balance\n"
          "-a    - average image for white balance\n");
-  exit(1);
+  return 1;
 }
 
-int show_files(void *q)
+static int show_files(void *q)
 {
   char *p;
   int cnt = 0;
@@ -127,12 +127,18 @@ int show_files(void *q)
   return cnt;
 }
 
-int main(int ac, char *av[])
+
+#if defined(BUILD_MONOLITHIC)
+#define main raw_half_mt_sample_main
+#endif
+
+extern "C"
+int main(int ac, const char **av)
 {
   int i, max_threads = 2;
   pthread_t *threads;
   if (ac < 2)
-    usage(av[0]);
+    return usage(av[0]);
 
   queue = calloc(ac - 1, sizeof(queue[0]));
 

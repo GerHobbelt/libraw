@@ -6,7 +6,7 @@
 
 
 
-std::vector<uint8_t> readfile(char *fn)
+static std::vector<uint8_t> readfile(const char *fn)
 {
     std::ifstream is(fn,std::ifstream::binary);
     if(is)
@@ -27,7 +27,13 @@ std::vector<uint8_t> readfile(char *fn)
 }
 
 
-int main(int ac, char *av[])
+
+#if defined(BUILD_MONOLITHIC)
+#define main raw_rawspeed3_capi_sample_main
+#endif
+
+extern "C"
+int main(int ac, const char **av)
 {
     if(ac < 2)
     {
@@ -68,4 +74,5 @@ int main(int ac, char *av[])
 
     rawspeed3_close(handle);
 
+		return 0;
 }

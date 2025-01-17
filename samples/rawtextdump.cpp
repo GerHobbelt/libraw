@@ -30,7 +30,7 @@ it under the terms of the one of two licenses as you choose:
 #include <winsock2.h>
 #endif
 
-void usage(const char *av)
+static void usage(const char *av)
 {
 	printf(
 		"Dump (small) selection of RAW file as tab-separated text file\n"
@@ -43,7 +43,7 @@ void usage(const char *av)
 		, av);
 }
 
-unsigned subtract_bl(unsigned int val, int bl)
+static unsigned subtract_bl(unsigned int val, int bl)
 {
 	return val > (unsigned)bl ? val - (unsigned)bl : 0;
 }
@@ -54,12 +54,18 @@ class LibRaw_bl : public LibRaw
 		void adjust_blacklevel() { LibRaw::adjust_bl(); }
 };
 
-int main(int ac, char *av[])
+
+#if defined(BUILD_MONOLITHIC)
+#define main raw_rawtextdump_sample_main
+#endif
+
+extern "C"
+int main(int ac, const char **av)
 {
 	if (ac < 4)
 	{
 		usage(av[0]);
-		exit(1);
+		return 1;
 	}
 	int colstart = atoi(av[2]);
 	int rowstart = atoi(av[3]);
@@ -72,7 +78,7 @@ int main(int ac, char *av[])
 	if (width <1 || height<1)
 	{
 		usage(av[0]);
-		exit(1);
+		return 1;
 	}
 
 	LibRaw_bl lr;
@@ -80,17 +86,17 @@ int main(int ac, char *av[])
 	if (lr.open_file(av[1]) != LIBRAW_SUCCESS)
 	{
 		fprintf(stderr, "Unable to open file %s\n", av[1]);
-		exit(1);
+		return 1;
 	}
 	if ((lr.imgdata.idata.colors == 1 && channel>0) || (channel >3))
 	{
 		fprintf(stderr, "Incorrect CHANNEL specified: %d\n", channel);
-		exit(1);
+		return 1;
 	}
 	if (lr.unpack() != LIBRAW_SUCCESS)
 	{
 		fprintf(stderr, "Unable to unpack raw data from %s\n", av[1]);
-		exit(1);
+		return 1;
 	}
 	lr.adjust_blacklevel();
 	printf("%s\t%d-%d-%dx%d\tchannel: %d\n", av[1], colstart, rowstart, width, height, channel);
@@ -142,4 +148,6 @@ int main(int ac, char *av[])
 	}
 	else
 		printf("Unsupported file data (e.g. floating point format), or incorrect channel specified\n");
+
+  return 0;
 }

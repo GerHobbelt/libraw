@@ -33,8 +33,8 @@ it under the terms of the one of two licenses as you choose:
 #define snprintf _snprintf
 #endif
 
-int process_once(LibRaw &RawProcessor, int half_mode, int camera_wb,
-                 int auto_wb, int suffix, int user_flip, char *fname)
+static int process_once(LibRaw &RawProcessor, int half_mode, int camera_wb,
+                 int auto_wb, int suffix, int user_flip, const char *fname)
 {
   char outfn[1024];
   RawProcessor.imgdata.params.half_size = half_mode;
@@ -60,7 +60,13 @@ int process_once(LibRaw &RawProcessor, int half_mode, int camera_wb,
   return ret;
 }
 
-int main(int ac, char *av[])
+
+#if defined(BUILD_MONOLITHIC)
+#define main raw_multirender_sample_main
+#endif
+
+extern "C"
+int main(int ac, const char **av)
 {
   int i, ret;
 

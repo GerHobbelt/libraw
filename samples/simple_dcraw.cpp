@@ -33,7 +33,7 @@ it under the terms of the one of two licenses as you choose:
 #define snprintf _snprintf
 #endif
 
-int my_progress_callback(void *unused_data, enum LibRaw_progress state,
+static int my_progress_callback(void *unused_data, enum LibRaw_progress state,
                          int iter, int expected)
 {
   if (iter == 0)
@@ -41,7 +41,7 @@ int my_progress_callback(void *unused_data, enum LibRaw_progress state,
   return 0;
 }
 
-char *customCameras[] = {
+static char *customCameras[] = {
     (char *)"43704960,4080,5356, 0, 0, 0, 0,0,148,0,0, Dalsa, FTF4052C Full,0",
     (char *)"42837504,4008,5344, 0, 0, 0, 0,0,148,0,0,Dalsa, FTF4052C 3:4",
     (char *)"32128128,4008,4008, 0, 0, 0, 0,0,148,0,0,Dalsa, FTF4052C 1:1",
@@ -54,7 +54,13 @@ char *customCameras[] = {
     (char *)"28035072,4992,2808, 0, 0, 0, 0,0,148,0,0,Dalsa, FTF5066C 16:9",
     NULL};
 
-int main(int ac, char *av[])
+
+#if defined(BUILD_MONOLITHIC)
+#define main raw_simple_dcraw_sample_main
+#endif
+
+extern "C"
+int main(int ac, const char **av)
 {
   int i, ret, verbose = 0, output_thumbs = 0, output_all_thumbs = 0;
 
