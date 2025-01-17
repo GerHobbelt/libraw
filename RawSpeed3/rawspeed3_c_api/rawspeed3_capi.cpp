@@ -178,7 +178,9 @@ int rawspeed3_handle_data::decodefile(rawspeed3_ret_t* resultp,
         resultp->cpp = r->getCpp();
         resultp->bpp = r->getBpp();
         resultp->pitch = r->pitch;
-        resultp->pixeldata = r->getDataUncropped(0,0);
+        auto arr = r->getByteDataAsUncroppedArray2DRef();
+        std::byte *rawd = &arr(0, 0);
+        resultp->pixeldata = rawd;
         const auto errors = r->getErrors();
         resultp->status = errors.empty()? rawspeed3_ok : rawspeed3_ok_warnings;
         return resultp->status;
