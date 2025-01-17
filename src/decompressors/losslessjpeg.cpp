@@ -170,7 +170,7 @@ bool LibRaw_LjpegDecompressor::parse_dht(bool init[4], uint32_t bits[4][17], uin
       return false;
 
     if (length < 1 + 16 + acc)
-      return 0xff;
+      return true;
 	for (int i = 0; i < acc; i++)
 		huffval[th][i] = buffer.get_u8();
 
