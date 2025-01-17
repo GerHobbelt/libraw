@@ -23,6 +23,9 @@ it under the terms of the one of two licenses as you choose:
 
 struct BitPump // generic bit source
 {
+	// fix warning C5204 : 'BitPump' : class has virtual functions, but its trivial destructor is not virtual; instances of objects derived from this class may not be destructed correctly
+  virtual ~BitPump() = default;
+
   virtual uint32_t peek(uint32_t num) = 0;
   virtual void consume(uint32_t num) = 0;
 
