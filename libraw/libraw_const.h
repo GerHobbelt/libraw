@@ -74,6 +74,10 @@ LIBRAW_MEMPOOL_CHECK define will result in error on pool overflow */
 
 #define LIBRAW_AHD_TILE 512
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifndef LIBRAW_NO_IOSTREAMS_DATASTREAM
 
 enum LibRaw_open_flags
@@ -81,6 +85,7 @@ enum LibRaw_open_flags
 	LIBRAW_OPEN_BIGFILE=1,
 	LIBRAW_OPEN_FILE= 1<<1
 };
+
 #endif
 
 enum LibRaw_openbayer_patterns
@@ -815,5 +820,9 @@ enum LibRaw_image_formats
   LIBRAW_IMAGE_JPEG = 1,
   LIBRAW_IMAGE_BITMAP = 2
 };
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

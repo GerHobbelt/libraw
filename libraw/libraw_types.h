@@ -76,11 +76,6 @@ typedef unsigned __int64 uint64_t;
 #include <omp.h>
 #endif
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
 #if defined(USE_LCMS)
 #include <lcms.h>
 #elif defined(USE_LCMS2)
@@ -91,6 +86,11 @@ extern "C"
 
 #include "libraw_const.h"
 #include "libraw_version.h"
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 #ifdef _WIN32
   typedef __int64 INT64;
@@ -924,10 +924,10 @@ typedef unsigned long long UINT64;
     int use_camera_wb;     /* -w */
     int use_camera_matrix; /* +M/-M */
     int output_color;      /* -o */
-    char *output_profile;  /* -o */
-    char *camera_profile;  /* -p */
-    char *bad_pixels;      /* -P */
-    char *dark_frame;      /* -K */
+    const char *output_profile; /* -o */
+    const char *camera_profile; /* -p */
+    const char *bad_pixels; /* -P */
+    const char *dark_frame; /* -K */
     int output_bps;        /* -4 */
     int output_tiff;       /* -T */
     int output_flags;
