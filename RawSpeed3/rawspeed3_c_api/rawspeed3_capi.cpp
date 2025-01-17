@@ -178,8 +178,7 @@ int rawspeed3_handle_data::decodefile(rawspeed3_ret_t* resultp,
         resultp->cpp = r->getCpp();
         resultp->bpp = r->getBpp();
         resultp->pitch = r->pitch;
-        auto arr = r->getByteDataAsUncroppedArray2DRef();
-        std::byte *rawd = &arr(0, 0);
+        std::byte *rawd = &r->getByteDataAsUncroppedArray2DRef()(0, 0);
         resultp->pixeldata = rawd;
         const auto errors = r->getErrors();
         resultp->status = errors.empty()? rawspeed3_ok : rawspeed3_ok_warnings;
@@ -193,21 +192,10 @@ int rawspeed3_handle_data::decodefile(rawspeed3_ret_t* resultp,
     }  
 }
 
-namespace rawspeed
-{
-	class CameraMetaDataFromMem : public CameraMetaData
-	{
-	public:
-		explicit CameraMetaDataFromMem(const char* xmlstring);
-	};
-}
-
-
 rawspeed3_handle_data::rawspeed3_handle_data(const char* cameradefs, bool is_file)
     : rawParser(nullptr)
 {
-  cameraMeta = is_file ? std::make_unique<rawspeed::CameraMetaData>(cameradefs)
-                       : std::make_unique <rawspeed::CameraMetaDataFromMem>(cameradefs);
+  cameraMeta = std::make_unique<rawspeed::CameraMetaData>(cameradefs, is_file);
 }
 rawspeed3_handle_data::~rawspeed3_handle_data()
 {
@@ -222,32 +210,3 @@ void rawspeed3_handle_data::release()
     if (rawParser)
         rawParser.reset();
 }
-
-// Camera metadata from mem
-namespace rawspeed
-{
-	CameraMetaDataFromMem::CameraMetaDataFromMem(const char* document)
-	{
-		using pugi::xml_node;
-		using pugi::xml_document;
-		using pugi::xml_parse_result;
-
-		xml_document doc;
-		xml_parse_result result = doc.load_string(document);
-
-		if (!result)
-			throw "Camera definitions parse error";
-
-		for (xml_node camera : doc.child("Cameras").children("Camera"))
-		{
-			const auto* cam = addCamera(std::make_unique<Camera>(camera));
-
-			if (cam == nullptr)
-				continue;
-
-			// Create cameras for aliases.
-			for (auto i = 0UL; i < cam->aliases.size(); i++)
-				addCamera(std::make_unique<Camera>(cam, i));
-		}
-	}
-} // namespace rawspeed
