@@ -43,12 +43,12 @@ it under the terms of the one of two licenses as you choose:
 static int verbose = 0, use_camera_wb = 0, use_auto_wb = 0, tiff_mode = 0;
 
 static pthread_mutex_t qm;
-static char **queue = NULL;
+static const char **queue = NULL;
 static size_t qsize = 0, qptr = 0;
 
-static char *get_next_file()
+static const char *get_next_file(void)
 {
-  char *ret;
+  const char *ret;
   if (!queue)
     return NULL;
   if (qptr >= qsize)
@@ -63,7 +63,8 @@ static void *process_files(void *q)
 {
   int ret;
   int count = 0;
-  char outfn[1024], *fn;
+  char outfn[1024];
+	const char *fn;
   libraw_data_t *iprc = libraw_init(0);
 
   if (!iprc)
@@ -117,7 +118,7 @@ static int usage(const char *p)
 
 static int show_files(void *q)
 {
-  char *p;
+  const char *p;
   int cnt = 0;
   while ((p = get_next_file()))
   {
@@ -132,7 +133,6 @@ static int show_files(void *q)
 #define main raw_half_mt_sample_main
 #endif
 
-extern "C"
 int main(int ac, const char **av)
 {
   int i, max_threads = 2;
@@ -169,12 +169,13 @@ int main(int ac, const char **av)
   }
   pthread_mutex_init(&qm, NULL);
   threads = calloc(max_threads, sizeof(threads[0]));
+  int *th_ok_arr = calloc(max_threads, sizeof(int));
   for (i = 0; i < max_threads; i++)
-    pthread_create(&threads[i], NULL, process_files, NULL);
+    th_ok_arr[i] = pthread_create(&threads[i], NULL, process_files, NULL);
   for (i = 0; i < max_threads; i++)
   {
     int *iptr;
-    if (threads[i])
+    if (th_ok_arr[i])
     {
       pthread_join(threads[i], (void *)&iptr);
     }

@@ -42,7 +42,6 @@ it under the terms of the one of two licenses as you choose:
 #define main raw_dcraw_half_sample_main
 #endif
 
-extern "C"
 int main(int ac, const char **av)
 {
   int i;

@@ -48,12 +48,12 @@ static int verbose = 0, use_camera_wb = 0, use_auto_wb = 0, tiff_mode = 0;
 
 // global file queue
 static HANDLE qmutex;
-static char **queue = NULL;
+static const char **queue = NULL;
 static size_t qsize = 0, qptr = 0;
 
-static char *get_next_file()
+static const char *get_next_file(void)
 {
-  char *ret;
+  const char *ret = NULL;
   DWORD dwWaitResult;
   if (!queue)
     return NULL;
@@ -80,7 +80,8 @@ static int process_files(void *q)
 {
   int ret;
   int count = 0;
-  char outfn[1024], *fn;
+  char outfn[1024];
+	const char *fn;
   libraw_data_t *iprc = libraw_init(0);
 
   if (!iprc)
@@ -134,7 +135,7 @@ static int usage(const char *p)
 
 static int show_files(void *q)
 {
-  char *p;
+  const char *p;
   int cnt = 0;
   while (p = get_next_file())
   {
@@ -149,7 +150,6 @@ static int show_files(void *q)
 #define main raw_half_mt_win32_sample_main
 #endif
 
-extern "C"
 int main(int ac, const char **av)
 {
   int i, max_threads = 2;
@@ -200,7 +200,7 @@ int main(int ac, const char **av)
                                    &ThreadID) // receive thread identifier
          ))
     {
-      printf("CreateThread error: %d\n", GetLastError());
+      printf("CreateThread error: 0x%zx\n", (size_t)GetLastError());
       return 1;
     }
   }
