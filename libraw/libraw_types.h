@@ -104,7 +104,7 @@ typedef unsigned long long UINT64;
   typedef unsigned short ushort;
 
 #ifdef LIBRAW_WIN32_DLLDEFS
-#ifdef LIBRAW_NODLL
+#if defined(LIBRAW_NODLL) || defined(BUILD_MONOLITHIC)
 #define DllDef
 #else
 #ifdef LIBRAW_BUILDLIB
@@ -936,6 +936,7 @@ typedef unsigned long long UINT64;
     int user_black;        /* -k */
     int user_cblack[4];
     int user_sat;          /* -S */
+	int shot_select;       /* -s */
     int med_passes;        /* -m */
     float auto_bright_thr;
     float adjust_maximum_thr;
