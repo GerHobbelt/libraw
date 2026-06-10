@@ -1,5 +1,5 @@
 /* -*- C++ -*-
- * Copyright 2019-2024 LibRaw LLC (info@libraw.org)
+ * Copyright 2019-2025 LibRaw LLC (info@libraw.org)
  *
  LibRaw is free software; you can redistribute it and/or modify
  it under the terms of the one of two licenses as you choose:
@@ -151,10 +151,12 @@ static const char *static_camera_list[] = {
 	"Canon EOS R",
 	"Canon EOS Ra",
 	"Canon EOS RP",
+	"Canon EOS R1",
 	"Canon EOS R3",
 	"Canon EOS R5",
 	"Canon EOS R5 Mark II",
 	"Canon EOS R5 C",
+	"Canon EOS R5 Mark II",
 	"Canon EOS R6",
 	"Canon EOS R6 Mark II",
 	"Canon EOS R7",
@@ -351,6 +353,7 @@ static const char *static_camera_list[] = {
 	"FujiFilm GFX 100",
 	"FujiFilm GFX 100 II",
 	"FujiFilm GFX 100S",
+	"FujiFilm GFX 100S II",
 	"FujiFilm X-Pro1",
 	"FujiFilm X-Pro2",
 	"FujiFilm X-Pro3",
@@ -397,6 +400,7 @@ static const char *static_camera_list[] = {
 	"FujiFilm X-T20",
 	"FujiFilm X-T30",
 	"FujiFilm X-T30 II",
+	"FujiFilm X-T50",
 	"FujiFilm X-T100",
 	"FujiFilm X-T200",
 	"FujiFilm IS-1",
@@ -412,6 +416,9 @@ static const char *static_camera_list[] = {
 	"Google Pixel 5",
 	"Google Pixel 7a",
 	"Google Pixel 8 Pro",
+	"Google Pixel 9 Pro",
+	"Google Pixel 9 Pro XL",
+	"Google Pixel 9 Pro Fold",
 #ifdef  USE_GPRSDK
 	"GoPro Fusion",
 	"GoPro HERO5",
@@ -595,6 +602,7 @@ static const char *static_camera_list[] = {
 	"Leica D-LUX5",
 	"Leica D-LUX6",
 	"Leica D-LUX7",
+	"Leica D-Lux8",
 	"Leica D-Lux (Typ 109)",
 	"Leica M8",
 	"Leica M8.2",
@@ -619,6 +627,7 @@ static const char *static_camera_list[] = {
 	"Leica Q2",
 	"Leica Q2 Monochrom",
 	"Leica Q3",
+	"Leica Q3 43",
 	"Leica S",
 	"Leica S2",
 	"Leica S3",
@@ -729,6 +738,7 @@ static const char *static_camera_list[] = {
 	"Nikon Z 5",
 	"Nikon Z 6",
 	"Nikon Z 6 II",
+	"Nikon Z 6 III (HE/HE* formats are not supported yet)",
 	"Nikon Z 7",
 	"Nikon Z 7 II",
 	"Nikon Z 8 (HE/HE* formats are not supported yet)",
@@ -928,6 +938,7 @@ static const char *static_camera_list[] = {
 	"Panasonic DC-GH5S",
 	"Panasonic DC-GH5 Mark II",
 	"Panasonic DC-GH6",
+	"Panasonic DC-GH7",
 	"Panasonic DMC-GM1",
 	"Panasonic DMC-GM1s",
 	"Panasonic DMC-GM5",
@@ -1122,6 +1133,7 @@ static const char *static_camera_list[] = {
 	"Seitz Roundshot D2Xs",
 	"Skydio 2+",
 	"Sigma fp",
+	"Sigma fp L",
 #ifdef USE_X3FTOOLS
 	"Sigma SD9 (raw decode only)",
 	"Sigma SD10 (raw decode only)",
@@ -1199,7 +1211,7 @@ static const char *static_camera_list[] = {
 	"Sony ILCE-6500",
 	"Sony ILCE-6600",
 	"Sony ILCE-6700",
-	"Sony ILCE-QX1",
+	"Sony ILCE-QX1 / UMC-R10C",
 	"Sony ILX-LR1",
 	"Sony DSC-F828",
 	"Sony DSC-HX95",
@@ -1278,6 +1290,7 @@ static const char *static_camera_list[] = {
 	"Sony ZV-1M2",
 	"Sony ZV-E1",
 	"Sony ZV-E10",
+	"Sony ZV-E10 II",
 	"STV680 VGA",
 	"PtGrey GRAS-50S5C",
 	"JaiPulnix BB-500CL",

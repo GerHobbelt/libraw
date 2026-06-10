@@ -1,6 +1,6 @@
 /* -*- C++ -*-
  * File: libraw_types.h
- * Copyright 2008-2024 LibRaw LLC (info@libraw.org)
+ * Copyright 2008-2025 LibRaw LLC (info@libraw.org)
  * Created: Sat Mar  8 , 2008
  *
  * LibRaw C data structures
@@ -254,6 +254,12 @@ typedef unsigned long long UINT64;
 
   typedef struct
   {
+	  unsigned len;
+	  void *data;
+  } libraw_dng_rawopcode_t;
+
+  typedef struct
+  {
     unsigned parsedfields;
     unsigned dng_cblack[LIBRAW_CBLACK_SIZE];
     unsigned dng_black;
@@ -267,6 +273,7 @@ typedef unsigned long long UINT64;
     float asshotneutral[4];
     float baseline_exposure;
     float LinearResponseLimit;
+	libraw_dng_rawopcode_t rawopcodes[3];
   } libraw_dng_levels_t;
 
   typedef struct
@@ -309,6 +316,7 @@ typedef unsigned long long UINT64;
     int   AFMicroAdjMode;
     float AFMicroAdjValue;
     short MakernotesFlip;
+    short AutoRotateMode;
     short RecordMode;
     short SRAWQuality;
     unsigned wbi;
