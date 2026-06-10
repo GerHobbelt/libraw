@@ -1744,6 +1744,8 @@ int LibRaw::adobe_coeff(unsigned make_idx, const char *t_model,
     { LIBRAW_CAMERAMAKER_Sony, "ILCA-99M2", 0, 0,
       { 6660,-1918,-471,-4613,12398,2485,-649,1433,6447 } },
 
+    { LIBRAW_CAMERAMAKER_Sony, "ILCE-1M2", 0, 0,
+      { 10058, -4074, -932, -4777, 12731, 2274, -544, 1282, 6102}},
     { LIBRAW_CAMERAMAKER_Sony, "ILCE-1", 0, 0,
       { 8161, -2947, -739, -4811, 12668, 2389, -437, 1229, 6524}},
 
@@ -1802,6 +1804,8 @@ int LibRaw::adobe_coeff(unsigned make_idx, const char *t_model,
       { 6972, -2408,  -600, -4330, 12101,  2515,  -388,  1277,  5847 } },
     { LIBRAW_CAMERAMAKER_Sony, "ILME-FX3", 0, 0,
       { 6912, -2127, -469, -4470, 12175, 2587, -398, 1478, 6492 } },
+    { LIBRAW_CAMERAMAKER_Sony, "ILME-FX2", 0, 0,
+      { 7460, -2365, -588, -5687, 13442, 2474, -624, 1156, 6584 } },
 
     { LIBRAW_CAMERAMAKER_Sony, "ILX-LR1", 0, 0,
       { 8200, -2976, -719, -4296, 12053, 2532, -429, 1282, 5774 } }, // temp, same as for ILCE-7RM5

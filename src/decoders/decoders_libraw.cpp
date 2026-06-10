@@ -54,19 +54,28 @@ void LibRaw::sony_arq_load_raw()
 
 void LibRaw::pentax_4shot_load_raw()
 {
+  size_t alloc_sz = size_t(imgdata.sizes.raw_width) * (size_t(imgdata.sizes.raw_height) + 16) * 4 * sizeof(ushort);
+  if (INT64(alloc_sz) > INT64(imgdata.rawparams.max_raw_memory_mb) * INT64(1024 * 1024))
+    throw LIBRAW_EXCEPTION_TOOBIG;
+
 #ifdef LIBRAW_CALLOC_RAWSTORE
   ushort *plane = (ushort *)calloc(size_t(imgdata.sizes.raw_width) * size_t(imgdata.sizes.raw_height), sizeof(ushort));
 #else
   ushort *plane = (ushort *)malloc(size_t(imgdata.sizes.raw_width) *
                                    size_t(imgdata.sizes.raw_height) * sizeof(ushort));
 #endif
-  size_t alloc_sz = size_t(imgdata.sizes.raw_width) * (size_t(imgdata.sizes.raw_height) + 16) * 4 *
-                 sizeof(ushort);
+
+  if (!plane)
+    throw LIBRAW_EXCEPTION_ALLOC;
+
 #ifdef LIBRAW_CALLOC_RAWSTORE
   ushort(*result)[4] = (ushort(*)[4])calloc(alloc_sz,1);
 #else
   ushort(*result)[4] = (ushort(*)[4])malloc(alloc_sz);
 #endif
+  if(!result)
+    throw LIBRAW_EXCEPTION_ALLOC;
+
   struct movement_t
   {
     int row, col;
@@ -289,17 +298,23 @@ void LibRaw::fuji_14bit_load_raw()
 void LibRaw::nikon_load_padded_packed_raw() // 12 bit per pixel, padded to 16
                                             // bytes
 {
+	unsigned bytesperrow = (((unsigned(S.raw_width) * 3u / 2u) + 15u) / 16u) * 16u; // bytes per row
+
   // libraw_internal_data.unpacker_data.load_flags -> row byte count
-  if (libraw_internal_data.unpacker_data.load_flags < 2000 ||
-      libraw_internal_data.unpacker_data.load_flags > 64000)
-    return;
+  if (bytesperrow < 2000 || bytesperrow > 64000)
+    throw LIBRAW_EXCEPTION_IO_CORRUPT;
+
   unsigned char *buf =
-      (unsigned char *)calloc(libraw_internal_data.unpacker_data.load_flags,1);
+      (unsigned char *)calloc(bytesperrow,1);
   for (int row = 0; row < S.raw_height; row++)
   {
     checkCancel();
-    libraw_internal_data.internal_data.input->read(
-        buf, libraw_internal_data.unpacker_data.load_flags, 1);
+    int readed = libraw_internal_data.internal_data.input->read(
+        buf, 1, bytesperrow);
+
+	if (readed < (int)bytesperrow)
+		derror();
+
     for (int icol = 0; icol < S.raw_width / 2; icol++)
     {
       imgdata.rawdata.raw_image[(row)*S.raw_width + (icol * 2)] =
